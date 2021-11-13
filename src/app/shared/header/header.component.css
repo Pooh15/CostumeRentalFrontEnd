@@ -1,0 +1,43 @@
+.toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  background-color: #1976d2 !important;
+  color: white;
+  font-weight: 600;
+  z-index: 10;
+  background-image: linear-gradient(to right, #563d7c, #1976d2);
+}
+
+#navbarNavDropdown div div a{
+  color: white;
+}
+#navbarNavDropdown{
+  justify-content: flex-end;
+}
+
+.login:hover{
+  color: #ffc107;
+  cursor: pointer;
+  outline: none;
+}
+
+.cursor{
+  cursor: pointer;
+}
+
+.header-menu{
+  cursor: pointer;
+  align-self: center;
+  margin-right: 20px;
+}
+
+/*@media screen and (min-width: 0px) and (max-width: 461px) {
+  .header-menu.navbar-nav {
+    align-self: flex-start;
+    margin-left: 2%;
+  }
+}*/
