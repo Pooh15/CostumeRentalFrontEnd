@@ -14,24 +14,21 @@ interface ResponseData {
 	providedIn: 'root'
 })
 export class InventoryformService {
-private appUrl = 'http://localhost:5000';  // URL to web api
-constructor(private http: HttpClient) { }
+	private appUrl = 'http://localhost:5000';  // URL to web api
+	constructor(private http: HttpClient) { }
 
-createInventory(inventoryObj: any){
-	let headers = new Headers();
-	headers.append('Content-Type', 'application/x-www-form-urlencoded');
-		
-	return this.http
-	.post<ResponseData>(
-		`${this.appUrl}/category/abc`,
-		inventoryObj
-		)
-	.pipe(
-		catchError(errorRes => {
-			let errorMessage = 'An unknown error occurred!';
-
-			return throwError(errorRes.error);
-		})
-		);
-}
+	createInventory(inventoryObj: any){
+		return this.http
+		.post<ResponseData>(
+			`${this.appUrl}/category/abc`,
+			inventoryObj
+			)
+		.pipe(
+			catchError(errorRes => {
+				let errorMessage = 'An unknown error occurred!';
+				
+				return throwError(errorRes.error);
+			})
+			);
+	}
 }
