@@ -4,112 +4,28 @@
 	Hello
 </div>
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-5 my-4">
-	<div class="col mb-4">
+	<div class="col mb-4" *ngFor="let item of rentItems">
     <div class="card h-100">
       <div class="ratio ratio-4x3">
-        <img src="assets/lehenga2.jpg" class="card-img-top img-thumbnail" alt="Auto Parts">
+        <img src="assets/lehenga2.jpg" class="card-img-top img-thumbnail" alt="Inventory Item">
+       <!--  <img [src]="item.image" class="card-img-top img-thumbnail" alt="Inventory Item"> -->
+
       </div>
       <div class="card-body">
         <div class="card-text">
           <div class="buy-item-box">
             <div class="card-content">
-              <span><h3>30$</h3> </span>
-              <span>Michigan</span>
+              <span><h3 style="font-size: 1rem;" class="mb-0 fw-bold"
+                >{{item.item_name}}</h3> </span>
+              <span class="fw-lighter">{{item.p_name}}-{{item.material_name}}</span>
             </div>
-            <div><strong>Bridal Lehenga</strong> 2021</div>
+            <div class="fw-normal fw-bolder">{{item.rental_price|currency}}
+              <span class="text-decoration-line-through fw-lighter">{{item.original_price|currency}}</span>
+              <span class="fw-lighter fst-italic text-info"> (60% OFF)</span></div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="col mb-4">
-    <div class="card h-100">
-      <div class="ratio ratio-4x3">
-        <img src="assets/lehenga2.jpg" class="card-img-top img-thumbnail" alt="Auto Parts">
-      </div>
-      <div class="card-body">
-        <div class="card-text">
-          <div class="buy-item-box">
-            <div class="card-content">
-              <span><h3>30$</h3> </span>
-              <span>Michigan</span>
-            </div>
-            <div><strong>Bridal Lehenga</strong> 2021</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col mb-4">
-    <div class="card h-100">
-      <div class="ratio ratio-4x3">
-        <img src="assets/lehenga2.jpg" class="card-img-top img-thumbnail" alt="Auto Parts">
-      </div>
-      <div class="card-body">
-        <div class="card-text">
-          <div class="buy-item-box">
-            <div class="card-content">
-              <span><h3>30$</h3> </span>
-              <span>Michigan</span>
-            </div>
-            <div><strong>Bridal Lehenga</strong> 2021</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col mb-4">
-    <div class="card h-100">
-      <div class="ratio ratio-4x3">
-        <img src="assets/lehenga2.jpg" class="card-img-top img-thumbnail" alt="Auto Parts">
-      </div>
-      <div class="card-body">
-        <div class="card-text">
-          <div class="buy-item-box">
-            <div class="card-content">
-              <span><h3>30$</h3> </span>
-              <span>Michigan</span>
-            </div>
-            <div><strong>Bridal Lehenga</strong> 2021</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col mb-4">
-    <div class="card h-100">
-      <div class="ratio ratio-4x3">
-        <img src="assets/lehenga2.jpg" class="card-img-top img-thumbnail" alt="Auto Parts">
-      </div>
-      <div class="card-body">
-        <div class="card-text">
-          <div class="buy-item-box">
-            <div class="card-content">
-              <span><h3>30$</h3> </span>
-              <span>Michigan</span>
-            </div>
-            <div><strong>Bridal Lehenga</strong> 2021</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col mb-4">
-    <div class="card h-100">
-      <div class="ratio ratio-4x3">
-        <img src="assets/lehenga2.jpg" class="card-img-top img-thumbnail" alt="Auto Parts">
-      </div>
-      <div class="card-body">
-        <div class="card-text">
-          <div class="buy-item-box">
-            <div class="card-content">
-              <span><h3>30$</h3> </span>
-              <span>Michigan</span>
-            </div>
-            <div><strong>Bridal Lehenga</strong> 2021</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
 </div>
