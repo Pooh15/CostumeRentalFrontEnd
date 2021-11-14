@@ -33,9 +33,10 @@ export class AppComponent {
 
 	onFileSelected(event: any){
 		if (event.target.files[0].size > 2000000) {
-          console.log('Image Size Cannot Exceed 2Mb Upload Failure');
-          return;
-        }
+			console.log('Image Size Cannot Exceed 2Mb Upload Failure');
+			return;
+		}
+
 		this.myFiles = event.target.files;
 	}
 }

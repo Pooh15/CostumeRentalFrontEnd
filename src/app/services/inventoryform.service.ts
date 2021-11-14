@@ -20,13 +20,13 @@ export class InventoryformService {
 	createInventory(inventoryObj: any){
 		return this.http
 		.post<ResponseData>(
-			`${this.appUrl}/category/abc`,
+			`${this.appUrl}/inventory/addItem`,
 			inventoryObj
 			)
 		.pipe(
 			catchError(errorRes => {
 				let errorMessage = 'An unknown error occurred!';
-				
+
 				return throwError(errorRes.error);
 			})
 			);
