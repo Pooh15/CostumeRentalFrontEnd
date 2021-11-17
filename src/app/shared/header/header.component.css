@@ -19,7 +19,7 @@
   justify-content: flex-end;
 }
 
-.login:hover{
+.login-header:hover{
   color: #ffc107;
   cursor: pointer;
   outline: none;
@@ -35,9 +35,20 @@
   margin-right: 20px;
 }
 
-/*@media screen and (min-width: 0px) and (max-width: 461px) {
-  .header-menu.navbar-nav {
-    align-self: flex-start;
-    margin-left: 2%;
-  }
-}*/
+.login-header{
+  cursor: pointer; 
+  display: flex;
+  flex-direction: column;
+}
+.modal-footer, .sign-in{
+  background-image: linear-gradient(to right, #563d7c, #1976d2);
+  color: white;
+}
+
+.modal-footer .register {
+  color: yellow;
+}
+
+.modal-footer button:hover{
+  text-decoration: underline;
+}

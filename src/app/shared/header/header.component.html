@@ -1,29 +1,108 @@
 <div class="toolbar navbar navbar-expand-sm py-0 navbar-dark" role="banner">
-<span routerLink="welcome" style="display:flex; cursor: pointer;" routerLinkActive="active">
-<img width="60" alt="Rent-A-Costume Logo" src="./assets/logo.png" />
-	<div class="box mt-1 ml-1">
-		<div class="h4 my-0 text-light">Costume</div>
-		<div id="long-form">Rental Service</div>
-	</div>
-</span>
+  <span routerLink="welcome" style="display:flex; cursor: pointer;" routerLinkActive="active">
+    <img width="60" alt="Rent-A-Costume Logo" src="./assets/logo.png" />
+    <div class="box mt-1 ml-1">
+      <div class="h4 my-0 text-light">Costume</div>
+      <div id="long-form">Rental Service</div>
+    </div>
+  </span>
   <div class="spacer"></div>
 
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+  aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
 </button>
 
 <div class="collapse navbar-collapse" id="navbarNavDropdown">
-<div class="header-menu navbar-nav">
-  <form class="header-menu nav-item">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-  </form>
-  <span class="header-menu nav-item">
-  	<div class="nav-item login cursor">
-   Login
-  </div>
-  </span>
+  <div class="header-menu navbar-nav">
+    <form class="header-menu nav-item">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    </form>
+    <span class="header-menu nav-item login-header" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+     <span class="bi bi-person-square"><span class="ml-2">Login</span></span>
+     <span style="font-size:11px">or Create Account</span>
+   </span>
 
+ </div>
 </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">User Name</label>
+            <input type="text" class="form-control" id="userName" placeholder="User Name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password">
+          </div>
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary d-grid gap-2 col-6 mx-auto sign-in" data-bs-dismiss="modal">Sign In</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <div>New to Rental Service? Register with us <button type="btn" class="btn register" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Create new Account</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1" >
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-center" id="exampleModalToggleLabel2">Registration</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="">
+        <div class="row row-cols-2">
+
+          <div class="mb-3">
+            <input type="text" class="form-control" id="userName" placeholder="User Name">
+          </div>
+          <div class="mb-3">
+            <input type="email" class="form-control" id="password" placeholder="Email"
+            required>
+          </div>
+          <div class="mb-3" style="justify-content: space-between;
+          display: flex;">
+          <label>Enter your birthday:</label>
+          <input type="date" id="date" value="today"
+          min="1970-01-01" max="2021-12-31" class="form-control">
+        </div>
+        <div class="mb-3">
+
+          <input type="tel" id="phone" name="phone" class="form-control" placeholder="123-45-678" required>
+        </div>
+
+        <div class="mb-3">
+          <input type="password" id="password" name="phone" class="form-control" 
+          placeholder="Password" required>
+        </div>
+        <div class="mb-3">
+          <input type="password" id="password1" name="phone" class="form-control" 
+          placeholder="Confirm Password" required>
+        </div>
+      </div>
+      <div class="mb-3">
+        <input type="text" id="address" name="address" class="form-control" 
+          placeholder="Address" required>
+      </div>
+</form>
+    </div>
+    <div class="modal-footer">
+      <button type="btn" class="btn btn-light" >Submit</button>
+      <button type="btn" class="btn btn-light" data-bs-target="#exampleModal" data-bs-toggle="modal" data-bs-dismiss="modal">Login</button>
+    </div>
+  </div>
 </div>
 </div>
