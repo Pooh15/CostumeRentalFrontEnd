@@ -19,10 +19,11 @@ import { HomeComponent } from './home/home.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
-import { InventoryComponent } from './browse/inventory/inventory.component';
+import { InventoryComponent } from './components/inventory/inventory.component';
 import {InventoryformService} from './services/inventoryform.service';
 import {InventoryService} from './services/inventory.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddInventoryComponent } from './components/add-inventory/add-inventory.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   NavComponent,
   HeaderComponent,
   HomeComponent,
-  InventoryComponent
+  InventoryComponent,
+  AddInventoryComponent
   ],
   imports: [
   BrowserModule,

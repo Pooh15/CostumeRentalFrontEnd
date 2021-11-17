@@ -1,21 +1,6 @@
- <app-header>
-	
-</app-header>
-<!--
-<div class="container-fluid content" role="main">
-	<app-home></app-home>
-<form enctype="multipart/form-data" (ngSubmit)="onSubmit(form)" #form="ngForm">
-	<div class="form-group">
-		<label for="exampleFormControlFile1">Example file input</label>
-		<input type="text" name="fname" [(ngModel)]="fname">
-		<input type="text" name="lname" [(ngModel)]="lname">
+ <app-header></app-header>
 
-		<input type="file" class="form-control-file" 
-		id="exampleFormControlFile1" (change)="onFileSelected($event)"
-		name='imageName' accept="image/*">
-		
-	</div>
-	<button type="submit" class="btn btn-primary">Submit</button>
-</form>
-</div> -->
-<app-nav></app-nav> 
+<!-- <app-nav></app-nav>  -->
+<div class="content">
+	<router-outlet></router-outlet>
+</div>
