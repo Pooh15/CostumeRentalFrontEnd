@@ -1,0 +1,17 @@
+<div class="grid-container">
+  <mat-grid-list cols="4" rowHeight="1:1.3">
+    <mat-grid-tile *ngFor="let card of cards">
+      <mat-card class="dashboard-card">
+            <img mat-card-image [src]="card.image" alt="Inventory Item" fxFlexAlign="stretch">
+            <mat-card-content>
+              <p>
+                {{card.title}}
+              </p>
+              <p>
+                $60
+              </p>
+            </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
