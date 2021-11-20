@@ -1,7 +1,39 @@
 <div class="corosal">
   <img src="./assets/horizontal_wedding.jpeg" class="card-img-top img-thumbnail" alt="Inventory Item">
 </div>
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-5 my-4">
+<div class="divider mt-3 mb-5">
+  <h1 >How It Works</h1>
+</div>
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 mb-5" style="justify-content: center;">
+  <div class="my-card p-1 mx-2">
+
+    <div class="my-card-content">
+      <span class="mb-3"><h1>RENT</h1></span>
+      <span>Look through our collection and reserve an outfit that you adore! We'll make sure it arrives on the scheduled delivery date.</span>
+    </div>
+  </div>
+  <div class="my-card p-1 mx-2">
+
+    <div class="my-card-content">
+      <span ><h1 class="display-4">Display 4</h1></span>
+      <span>You will be able to communicate through our chat for any request related to your inventory</span>
+    </div>
+  </div>
+  <div class="my-card p-1 mx-2">
+
+    <div class="my-card-content">
+      <span class="mb-3"><h1>RETURN AND REPEAT</h1></span>
+      <span>Return your outfit using the pre-paid envelope and shipping box. Goodbyes are hard but you know what they say…the best way to get over a dress is to get inside another one!</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider mt-3 mb-5">
+  <h2 >Most Demanding Items</h2>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-5 mt-4 justify-content-center">
 	<div class="col mb-4" *ngFor="let item of rentItems">
     <div class="card h-100">
       <div class="ratio ratio-4x3">
@@ -13,15 +45,18 @@
             <div class="card-content">
               <span><h3 style="font-size: 1rem;" class="mb-0 fw-bold"
                 >{{item.item_name}}</h3> </span>
-              <span class="fw-lighter">{{item.p_name}}-{{item.material_name}}</span>
+                <span class="fw-lighter">{{item.p_name}}-{{item.material_name}}</span>
+              </div>
+              <div class="fw-normal fw-bolder">{{item.rental_price|currency}}
+                <span class="text-decoration-line-through fw-lighter">{{item.original_price|currency}}</span>
+                <span class="fw-lighter fst-italic text-info"> (60% OFF)</span></div>
+              </div>
             </div>
-            <div class="fw-normal fw-bolder">{{item.rental_price|currency}}
-              <span class="text-decoration-line-through fw-lighter">{{item.original_price|currency}}</span>
-              <span class="fw-lighter fst-italic text-info"> (60% OFF)</span></div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
+<div class="d-flex justify-content-center">
+  <button type="button" class="btn btn-primary d-grid gap-2">Show More Results</button>
 </div>
+

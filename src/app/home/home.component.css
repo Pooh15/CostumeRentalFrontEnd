@@ -2,3 +2,47 @@
 	flex-grow: 1;
 	object-fit:contain;
 }
+
+.divider h1 {
+  display: flex;
+  flex-direction: row;
+  font-size: 38px;
+}
+
+.divider h2 {
+  display: flex;
+  flex-direction: row;
+  font-size: 23px;
+}
+
+.divider h1:before, .divider h1:after,
+.divider h2:before, .divider h2:after{
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid lightgrey;
+  margin: auto;
+}
+
+.divider h1:before, .divider h2:before {
+  margin-right: 10px
+}
+
+.divider h1:after, .divider h2:after {
+  margin-left: 10px
+}
+
+.my-card{
+  width: 32%;
+  /*box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);*/
+  text-align: center;
+}
+
+.my-card-content{
+  display: flex;
+
+  flex-direction: column;
+}
+
+.my-card-content span:nth-child(2){
+  font-family: Cursive
+}
