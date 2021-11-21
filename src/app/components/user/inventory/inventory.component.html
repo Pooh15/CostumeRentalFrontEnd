@@ -1,0 +1,107 @@
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col-sm-2">
+    	<div class="vertical-filter">
+    		<span class="vertical-filters-header">Categories</span>
+			<div *ngFor="let item of arr">
+				<input type="checkbox" id="{{item}}" [value]="item " (change)="getItem($event)">
+				<label for="{{item}}" class="ms-3"> {{item }}</label>
+			</div>
+    	</div>
+    	<div class="vertical-filter">
+    		<span class="vertical-filters-header">Pattern</span>
+			<div *ngFor="let item of pattern">
+				<input type="checkbox" id="{{item}}" [value]="item " (change)="getPattern($event)">
+				<label for="{{item}}" class="ms-3"> {{item }}</label>
+			</div>
+    	</div>
+    	<div class="vertical-filter">
+    		<span class="vertical-filters-header">Color</span>
+			<div *ngFor="let item of color">
+				<input type="checkbox" id="{{item}}" [value]="item " (change)="getColor($event)">
+				<label for="{{item}}" class="ms-3"> {{item }}</label>
+			</div>
+    	</div>
+    </div>
+<div class="col-sm-10">
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+<div class="col mb-4" style="position: relative;">
+	<!-- [ngStyle]="{'opacity': itemAvailable == true? '1' : '0.5'}" -->
+	<div class="card h-100" style="opacity: 0.5;">
+		<div class="ratio ratio-4x3">
+			<img src="./assets/Ball_gown_1.jpg" class="card-img-top img-thumbnail" alt="Inventory Item">
+		</div>
+		<div class="card-body">
+			<div class="card-text">
+				<div class="buy-item-box">
+					<div class="card-content">
+					  <span><h3 style="font-size: 1rem;" class="mb-0 fw-bold"
+					    >Item Name</h3> </span>
+					    <span class="fw-lighter">Pattern NAme-material_name</span>
+					</div>
+					<div>Sizes: XL,M,L</div>
+					<div class="fw-normal fw-bolder">rental_price
+						<span class="text-decoration-line-through fw-lighter">original_price</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- [ngClass]="{'centered': itemAvailable == false}" -->
+	<div class="centered">Out Of Stock</div>
+	<!-- <div class="centered">In Laundry</div> -->
+	<div class="centered2">Available on 12/31/2021</div>
+</div>
+<div class="col mb-4" *ngFor="let item of [1, 2, 3]" style="position: relative;">
+	<div class="card h-100">
+		<div class="ratio ratio-4x3">
+			<img src="./assets/Ball_gown_1.jpg" class="card-img-top img-thumbnail" alt="Inventory Item">
+		</div>
+		<div class="card-body">
+			<div class="card-text">
+				<div class="buy-item-box">
+					<div class="card-content">
+					  <span><h3 style="font-size: 1rem;" class="mb-0 fw-bold"
+					    >Item Name</h3> </span>
+					    <span class="fw-lighter">Pattern NAme-material_name</span>
+					</div>
+					<div>Sizes: L,M,XS</div>
+					<div class="fw-normal fw-bolder">rental_price
+						<span class="text-decoration-line-through fw-lighter">original_price</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="col mb-4" style="position: relative;">
+	<div class="card h-100">
+		<div class="ratio ratio-4x3">
+			<img src="./assets/Ball_gown_1.jpg" class="card-img-top img-thumbnail" alt="Inventory Item">
+		</div>
+		<div class="card-body">
+			<div class="card-text">
+				<div class="buy-item-box">
+					<div class="card-content">
+					  <span><h3 style="font-size: 1rem;" class="mb-0 fw-bold"
+					    >Item Name</h3> </span>
+					    <span class="fw-lighter">Pattern NAme-material_name</span>
+					</div>
+					<div>Sizes: L,M,XS</div>
+					<div class="fw-normal fw-bolder">rental_price
+						<span class="text-decoration-line-through fw-lighter">original_price</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="laundry-status"> In Laundry
+	<div class="laundry-available">Available on 12/31/2021</div></div>
+
+</div>
+
+</div>
+</div>
+</div>

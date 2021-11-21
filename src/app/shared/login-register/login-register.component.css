@@ -1,0 +1,42 @@
+.login-container{
+	box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+}
+.btn-light:hover, .btn-light:focus, .btn-light:active, .btn-light.active, 
+.open>.dropdown-toggle.btn-light {
+    color: #fff;
+    background-color: #022b34;
+    border-color: #285e8e; /*set the color you want here*/
+}
+#pointer {
+  width: 200px;
+  height: 40px;
+  position: relative;
+  background: #2d65b8;
+}
+#pointer:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 20px solid white;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+}
+#pointer:before {
+  content: "";
+  position: absolute;
+  right: -20px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 20px solid #2d65b8;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+}
+
+#pointer h1{
+	margin-left: 18%;
+	color: white;
+}

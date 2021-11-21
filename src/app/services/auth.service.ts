@@ -4,18 +4,10 @@ import { map, catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 
-
 interface AuthResponseData {
-	"Success": [
-	{
-		u_name: "",
-		role_name: ""
-		dob: "",
-		phone:0,
-		email: "",
-		address:""
-	}
-	]
+  Success: [
+    "User successfully registered."
+]
 }
 
 @Injectable({
@@ -34,17 +26,36 @@ export class AuthService {
 		"password": string
 	}){
 		return this.http
-		.post<AuthResponseData>(
+		.post<any>(
 			`${this.appUrl}/auth/login`, loginObj)
 		.pipe(
 			catchError(errorRes => {
 				let errorMessage = 'An unknown error occurred!';
+				
 				if (!errorRes.error.Error) {
 					return throwError(errorMessage);
 				}else {
-					return throwError(errorRes.error.Error);
+					return throwError(errorRes.error);
 				}
 			})
 			);
 	}
+
+signup(reqData:any) {
+return this.http
+  .post<AuthResponseData>(
+    `${this.appUrl}/auth/register`,
+    reqData
+  ).pipe(
+    catchError(errorRes => {
+      let errorMessage = 'An unknown error occurred!';
+      if (!errorRes.error.Error) {
+        return throwError(errorMessage);
+      }else {
+        return throwError(errorRes.error.Error);
+      }
+      
+    })
+  );
+}
 }
