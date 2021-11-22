@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InventoryService } from 'src/app/services/inventory.service';
 
 @Component({
 	selector: 'app-inventory',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./inventory.component.css']
 })
 export class InventoryComponent implements OnInit {
-	arr: string[] = ['Apple', 'Mango','Banana'];
+ arr: {"c_id": number, "c_name": string}[] = [];
+
 	checkedCategory: string[] = [];
 
 	pattern: string[] = ['Lehenga', 'Saree','Bridesmaid'];
@@ -15,9 +17,8 @@ export class InventoryComponent implements OnInit {
 	color: string[] = ['Red', 'Yellow','Pink'];
 	checkedColor: string[] = [];
 
-	constructor() { }
+	constructor(private inventoryService:InventoryService) { 
 
-	ngOnInit(): void {
 	}
 
 	getItem(event: any) {
@@ -51,6 +52,21 @@ export class InventoryComponent implements OnInit {
 				this.checkedColor.splice(index, 1);
 			}
 		}
+	}
+
+	getInventory(){
+		this.inventoryService.getCategory().subscribe(
+			resData => {
+				this.arr=resData;
+			},
+			errorMessage => {
+				console.log(errorMessage);
+			}
+			);
+	}
+
+	ngOnInit(): void {
+		this.getInventory();
 	}
 
 }
