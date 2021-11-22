@@ -8,7 +8,7 @@ import { InventoryService } from 'src/app/services/inventory.service';
 })
 export class InventoryComponent implements OnInit {
 	categoryArr: {"c_id": number, "c_name": string}[] = [];
-	checkedCategory: {"c_id": number, "c_name": string}[] = [];
+	checkedCategory: number[] = [];
 
 	pattern: string[] = ['Lehenga', 'Saree','Bridesmaid'];
 	checkedPattern: string[] = [];
@@ -21,13 +21,12 @@ export class InventoryComponent implements OnInit {
 	}
 
 	getItem(event: any, index: number) {
-		console.log(event.target)
 		if(event.target.checked) {
-			this.checkedCategory.push(this.categoryArr[index]);
-
+			this.checkedCategory.push(event.target.value);
 		} else {
-			if (index > -1) {
-				this.checkedCategory.splice(index, 1);
+			let i = this.checkedCategory.indexOf(event.target.value);
+			if (i > -1) {
+				this.checkedCategory.splice(i, 1);
 			}
 		}
 		console.log(this.checkedCategory)
