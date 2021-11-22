@@ -7,9 +7,8 @@ import { InventoryService } from 'src/app/services/inventory.service';
 	styleUrls: ['./inventory.component.css']
 })
 export class InventoryComponent implements OnInit {
- arr: {"c_id": number, "c_name": string}[] = [];
-
-	checkedCategory: string[] = [];
+	categoryArr: {"c_id": number, "c_name": string}[] = [];
+	checkedCategory: {"c_id": number, "c_name": string}[] = [];
 
 	pattern: string[] = ['Lehenga', 'Saree','Bridesmaid'];
 	checkedPattern: string[] = [];
@@ -21,15 +20,17 @@ export class InventoryComponent implements OnInit {
 
 	}
 
-	getItem(event: any) {
+	getItem(event: any, index: number) {
+		console.log(event.target)
 		if(event.target.checked) {
-			this.checkedCategory.push(event.target.value);
+			this.checkedCategory.push(this.categoryArr[index]);
+
 		} else {
-			const index = this.checkedCategory.indexOf(event.target.value);
 			if (index > -1) {
 				this.checkedCategory.splice(index, 1);
 			}
 		}
+		console.log(this.checkedCategory)
 	}
 
 	getPattern(event: any){
@@ -40,7 +41,8 @@ export class InventoryComponent implements OnInit {
 			if (index > -1) {
 				this.checkedPattern.splice(index, 1);
 			}
-		}	
+		}
+		console.log(this.checkedPattern)	
 	}
 
 	getColor(event: any){
@@ -57,7 +59,7 @@ export class InventoryComponent implements OnInit {
 	getInventory(){
 		this.inventoryService.getCategory().subscribe(
 			resData => {
-				this.arr=resData;
+				this.categoryArr = resData;
 			},
 			errorMessage => {
 				console.log(errorMessage);
