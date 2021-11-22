@@ -4,22 +4,24 @@
     	<div class="vertical-filter">
     		<span class="vertical-filters-header">Categories</span>
 			<div *ngFor="let item of arr">
-				<input type="checkbox" id="{{item}}" [value]="item " (change)="getItem($event)">
-				<label for="{{item}}" class="ms-3"> {{item }}</label>
+					<!--<input type="checkbox" id="{{item.c_name}}" [value]="item.c_name" (change)="getItem($event)">
+					<label for="{{item.c_name}}" class="ms-3"> {{item.c_name}}</label> -->
+						{{arr[0]}}
+
 			</div>
     	</div>
     	<div class="vertical-filter">
     		<span class="vertical-filters-header">Pattern</span>
 			<div *ngFor="let item of pattern">
-				<input type="checkbox" id="{{item}}" [value]="item " (change)="getPattern($event)">
-				<label for="{{item}}" class="ms-3"> {{item }}</label>
+				<input type="checkbox" id="{{item}}" [value]="item" (change)="getPattern($event)">
+				<label for="{{item}}" class="ms-3"> {{item}}</label>
 			</div>
     	</div>
     	<div class="vertical-filter">
     		<span class="vertical-filters-header">Color</span>
 			<div *ngFor="let item of color">
-				<input type="checkbox" id="{{item}}" [value]="item " (change)="getColor($event)">
-				<label for="{{item}}" class="ms-3"> {{item }}</label>
+				<input type="checkbox" id="{{item}}" [value]="item" (change)="getColor($event)">
+				<label for="{{item}}" class="ms-3"> {{item}}</label>
 			</div>
     	</div>
     </div>

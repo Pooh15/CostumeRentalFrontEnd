@@ -26,4 +26,16 @@ getItems(): Observable<any[]>{
 		}),catchError(this.handleError('getItems', []))
 		);//end pipe
 	}
+
+getCategory(): Observable<any[]>{
+
+	return this.http.get<any[]>(`${this.appUrl}/category/getCategory`)
+	.pipe(
+		map( response => {
+			
+
+			return response;
+		}),catchError(this.handleError('getCategory', []))
+		);//end pipe
+	}
 }
