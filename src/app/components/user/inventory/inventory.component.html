@@ -12,15 +12,29 @@
 			<div class="vertical-filter">
 				<span class="vertical-filters-header">Pattern</span>
 				<div *ngFor="let item of pattern">
-					<input type="checkbox" id="{{item}}" [value]="item" (change)="getPattern($event)">
-					<label for="{{item}}" class="ms-3"> {{item}}</label>
+					<input type="checkbox" id="{{item.p_id}}" [value]="item.p_id" (change)="getPattern($event)">
+					<label for="{{item.p_id}}" class="ms-3"> {{item.p_name}}</label>
 				</div>
 			</div>
 			<div class="vertical-filter">
 				<span class="vertical-filters-header">Color</span>
 				<div *ngFor="let item of color">
-					<input type="checkbox" id="{{item}}" [value]="item" (change)="getColor($event)">
-					<label for="{{item}}" class="ms-3"> {{item}}</label>
+					<input type="checkbox" id="{{item.color_id}}" [value]="item.color_id" (change)="getColor($event)">
+					<label for="{{item.color_id}}" class="ms-3"> {{item.color}}</label>
+				</div>
+			</div>
+			<div class="vertical-filter">
+				<span class="vertical-filters-header">Size</span>
+				<div *ngFor="let item of size">
+					<input type="checkbox" id="{{item.s_id}}" [value]="item.s_id" (change)="getSize($event)">
+					<label for="{{item.s_id}}" class="ms-3"> {{item.s_name}}</label>
+				</div>
+			</div>
+			<div class="vertical-filter">
+				<span class="vertical-filters-header">Clothmaterial</span>
+				<div *ngFor="let item of cloth">
+					<input type="checkbox" id="{{item.cloth_id}}" [value]="item.cloth_id" (change)="getCloth($event)">
+					<label for="{{item.cloth_id}}" class="ms-3"> {{item.material_name}}</label>
 				</div>
 			</div>
 		</div>
@@ -53,7 +67,7 @@
 						<!-- <div class="centered">In Laundry</div> -->
 						<div class="centered2">Available on 12/31/2021</div>
 					</div>
-					<div class="col mb-4" *ngFor="let item of [1, 2, 3]" style="position: relative;">
+					<div class="col mb-4" *ngFor="let item of categoryList" style="position: relative;">
 						<div class="card h-100">
 							<div class="ratio ratio-4x3">
 								<img src="./assets/Ball_gown_1.jpg" class="card-img-top img-thumbnail" alt="Inventory Item">
@@ -64,7 +78,7 @@
 										<div class="card-content">
 											<span><h3 style="font-size: 1rem;" class="mb-0 fw-bold"
 												>Item Name</h3> </span>
-												<span class="fw-lighter">Pattern NAme-material_name</span>
+												<span class="fw-lighter">Pattern Name-material_name</span>
 											</div>
 											<div>Sizes: L,M,XS</div>
 											<div class="fw-normal fw-bolder">rental_price

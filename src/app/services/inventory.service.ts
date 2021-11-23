@@ -33,9 +33,63 @@ getCategory(): Observable<any[]>{
 	.pipe(
 		map( response => {
 			
-
 			return response;
 		}),catchError(this.handleError('getCategory', []))
 		);//end pipe
 	}
+
+getPattern(): Observable<any[]>{
+
+		return this.http.get<any[]>(`${this.appUrl}/category/getPattern`)
+		.pipe(
+			map( response => {
+				
+				return response;
+			}),catchError(this.handleError('getPattern', []))
+			);//end pipe
+		}
+
+getColor(): Observable<any[]>{
+
+		return this.http.get<any[]>(`${this.appUrl}/category/getColor`)
+		.pipe(
+			map( response => {
+					
+				return response;
+			}),catchError(this.handleError('getColor', []))
+			);//end pipe
+		}
+
+getSize(): Observable<any[]>{
+
+		return this.http.get<any[]>(`${this.appUrl}/category/getSize`)
+		.pipe(
+			map( response => {
+						
+				return response;
+			}),catchError(this.handleError('getSize', []))
+			);//end pipe
+		}
+
+getCloth(): Observable<any[]>{
+
+		return this.http.get<any[]>(`${this.appUrl}/category/getCloth`)
+		.pipe(
+			map( response => {
+							
+				return response;
+			}),catchError(this.handleError('getCloth', []))
+			);//end pipe
+		}
+getCategoryDetails(checkedCategory:any[]): Observable<any[]>{
+
+		return this.http.get<any[]>(`${this.appUrl}/category/getCategoryDetails/${checkedCategory}`)
+		.pipe(
+			map( response => {
+				
+	
+				return response;
+			}),catchError(this.handleError('getCategoryDetails', []))
+			);//end pipe
+		}
 }
