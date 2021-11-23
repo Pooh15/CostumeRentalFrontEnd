@@ -13,7 +13,6 @@ import {InventoryComponent} from './components/user/inventory/inventory.componen
 const routes: Routes = [
 { path: '', component: HomeComponent },
 { path: 'home', component: HomeComponent },
-{path: 'login-register', component: LoginRegisterComponent},
 {path: 'add-inventory', component: AddInventoryComponent},
 {
 	path: 'user',
@@ -23,18 +22,19 @@ const routes: Routes = [
 	{ path: 'check-order', component: CheckOrderComponent },
 	{ path: 'inventory', component: InventoryComponent },
 	]
-},
-{
-	path: 'inventory',
-	component: NavComponent,
-	children: [
-	{ path: '', redirectTo: 'pattern', pathMatch: 'full'},
-	{ path: 'pattern', component: InventoryComponent },
-	{ path: 'clothmaterial', component: InventoryComponent },
-	{ path: 'size', component: InventoryComponent },
-	{ path: 'color', component: InventoryComponent }
-	]
 }
+// ,
+// {
+// 	path: 'inventory',
+// 	component: NavComponent,
+// 	children: [
+// 	{ path: '', redirectTo: 'pattern', pathMatch: 'full'},
+// 	{ path: 'pattern', component: InventoryComponent },
+// 	{ path: 'clothmaterial', component: InventoryComponent },
+// 	{ path: 'size', component: InventoryComponent },
+// 	{ path: 'color', component: InventoryComponent }
+// 	]
+// }
 
 ];
 
