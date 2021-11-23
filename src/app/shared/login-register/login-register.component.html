@@ -2,13 +2,13 @@
 
 <div class="row py-5">
 	<div class="col my-5">
-	<span *ngIf="loginError">
+	<span *ngIf="loginError || registerErr">
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 		<strong>Error!</strong> {{loginErrMsg}}.
 		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	</span>
-	<span>
+	<span *ngIf="registerSuccess">
 		<div class="alert alert-success alert-dismissible fade show" role="alert">
 		<strong>Registration Success!</strong> .
 		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -42,39 +42,39 @@
 		<div class="d-flex justify-content-center">
 			<h2 style="font-size: xx-large;" class="pb-3">Register With Us</h2>
 		</div>
-		<form action="">
+		<form #registerUser="ngForm" (ngSubmit)="register(registerUser.value)">
 			<div class="row row-cols-2">
 
 				<div class="mb-3">
-					<input type="text" class="form-control" id="reg-userName" placeholder="User Name" autocomplete="off">
+					<input type="text" class="form-control" id="regUserName" name="regUserName" placeholder="User Name" ngModel autocomplete="off">
 				</div>
 				<div class="mb-3">
-					<input type="email" class="form-control" id="email" placeholder="Email" autocomplete="off"
+					<input type="email" class="form-control" id="email" name="email" placeholder="Email" autocomplete="off" ngModel
 					required>
 				</div>
-				<div class="mb-3" style="justify-content: space-between;
+			<div class="mb-3" style="justify-content: space-between;
 				display: flex;">
 				<label>Enter your birthday:</label>
 				<input type="date" id="date" [value]="today | date:'yyyy-MM-dd'"
-				min="1970-01-01" max="2021-12-31" class="form-control">
+				min="1970-01-01" max="2021-12-31" class="form-control" name="date" ngModel>
 			</div>
 			<div class="mb-3">
 
-				<input type="tel" id="phone" name="phone" class="form-control" placeholder="123-45-678" required>
+				<input type="tel" id="phone" name="phone" class="form-control" placeholder="123-45-678" name="phone" ngModel required>
 			</div>
 
 			<div class="mb-3">
-				<input type="password" id="reg-password" name="phone" class="form-control" 
-				placeholder="Password" required>
+				<input type="password" id="regPass" name="regPass" class="form-control" 
+				placeholder="Password" ngModel required>
 			</div>
 			<div class="mb-3">
-				<input type="password" id="reg-password1" name="phone" class="form-control" 
-				placeholder="Confirm Password" required>
+				<input type="password" id="regPass1" name="regPass1" class="form-control" 
+				placeholder="Confirm Password" ngModel required>
 			</div>
 		</div>
 		<div class="mb-3">
 			<input type="text" id="address" name="address" class="form-control" 
-			placeholder="Address" required>
+			placeholder="Address" ngModel required>
 		</div>
 		<button type="submit" class="btn btn-light d-grid gap-2 col-6 mx-auto">Submit</button>
 	</form>

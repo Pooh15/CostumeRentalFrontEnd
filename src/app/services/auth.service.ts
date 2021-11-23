@@ -5,9 +5,15 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 
 interface AuthResponseData {
+	Success: [
+	"User successfully registered."
+	]
+}
+
+interface ResponseData {
   Success: [
-    "User successfully registered."
-]
+    "Successfully created User Account."
+  ]
 }
 
 @Injectable({
@@ -41,21 +47,19 @@ export class AuthService {
 			);
 	}
 
-signup(reqData:any) {
-return this.http
-  .post<AuthResponseData>(
-    `${this.appUrl}/auth/register`,
-    reqData
-  ).pipe(
-    catchError(errorRes => {
-      let errorMessage = 'An unknown error occurred!';
-      if (!errorRes.error.Error) {
-        return throwError(errorMessage);
-      }else {
-        return throwError(errorRes.error.Error);
-      }
-      
-    })
-  );
-}
-}
+	signup(reqData:any) {
+		const url = `${this.appUrl}/auth/register`;
+        return this.http.post<ResponseData>(url, reqData)
+        .pipe(map( response => {  
+        	console.log(response)
+            return response; 
+        }), catchError(errorRes => {
+            let errorMessage = 'An unknown error occurred!';
+            if (!errorRes.error) {
+            	return throwError(errorMessage);
+            }else {
+            	return throwError(errorRes.error);
+            }
+        }) );
+		}
+	}

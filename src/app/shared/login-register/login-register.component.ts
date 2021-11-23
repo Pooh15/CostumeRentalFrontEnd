@@ -16,7 +16,9 @@ export class LoginRegisterComponent implements OnInit {
 	error = [];
 	loginError: boolean = false;
 	loginErrMsg:string = "";
-
+	registerSuccess: boolean = false;
+	registerErr: boolean = false;
+	
 	constructor(private authService: AuthService, private router:Router) {
 		this.today = Date.now();
 	}
@@ -49,24 +51,25 @@ export class LoginRegisterComponent implements OnInit {
 
 	}
 
-	register(){
-		/*..InitiLize list of value from thr form..*/
+	register(registerUserObj: any){
 		let data = {
-			// "username": this.registrationForm.value.username,
-			// "phone": this.registrationForm.value.fname,
-			// "email": this.registrationForm.value.lastName,
-			// "address": this.registrationForm.value.email,
-			// "password": this.registrationForm.value.password,
-			// "dob": this.roleValue
+			"username": registerUserObj.regUserName,
+			"phone": registerUserObj.phone,
+			"email": registerUserObj.email,
+			"address": registerUserObj.address,
+			"password": registerUserObj.regPass,
+			"dob": registerUserObj.date
 		}
+		console.log(data)
 		this.authService.signup(data).subscribe(
 			resData => {
-				console.log(resData);
+				this.registerSuccess = true;
+				setTimeout(() => {this.registerSuccess = false;}, 5000);
 			},
 			errorMessage => {
-				this.loginError = true;
+				this.registerErr = true;
 				this.loginErrMsg = errorMessage;
-				setTimeout(() => {this.loginError = false;}, 5000);
+				setTimeout(() => {this.registerErr = false;}, 5000);
 			}
 			);
 	}
