@@ -1,6 +1,11 @@
 .login-container{
 	box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+  z-index: 10;
+  position: fixed;
+  background-color: white;
+ /* background-color: rgb(5 36 114 / 57%);*/
 }
+
 .btn-light:hover, .btn-light:focus, .btn-light:active, .btn-light.active, 
 .open>.dropdown-toggle.btn-light {
     color: #fff;

@@ -1,6 +1,9 @@
-<div class="row login-container">
-
-<div class="row py-5">
+<div class="row login-container px-5">
+<div style="display: flex;
+    justify-content: end;">
+	<span><button type="button" class="btn btn-primary my-3" (click)="close()">Close</button></span>
+</div>
+<div class="row pb-5">
 	<div class="col my-5">
 	<span *ngIf="loginError || registerErr">
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">

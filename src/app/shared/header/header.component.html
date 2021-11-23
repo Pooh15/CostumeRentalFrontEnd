@@ -18,11 +18,27 @@
     <form class="header-menu nav-item">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     </form>
-    <span class="header-menu nav-item login-header" routerLink="login-register">
+    <span class="header-menu nav-item login-header" (click)="loginFlag = !loginFlag"
+    *ngIf="userName == ''">
      <span class="bi bi-person-square"><span class="ml-2">Login</span></span>
      <span style="font-size:11px">or Create Account</span>
    </span>
-
- </div>
+   <div class="nav-item" *ngIf="userName != ''">
+    <div class="btn-group">
+      <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        {{userName}}
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><button class="dropdown-item" type="button">Profile</button></li>
+        <li><button class="dropdown-item" type="button" (click)="signOut()">LogOut</button></li>
+      </ul>
+    </div>
+  </div>
 </div>
+</div>
+</div>
+
+<div *ngIf="loginFlag">
+  <app-login-register (closeLogin)="loginOpenClose($event)" 
+  (loggedInUser)="updateUserName($event)"></app-login-register>
 </div>

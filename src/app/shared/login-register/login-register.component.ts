@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -9,7 +9,9 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 	styleUrls: ['./login-register.component.css']
 })
 export class LoginRegisterComponent implements OnInit {
-	//registrationForm: FormGroup;
+	@Output() closeLogin = new EventEmitter<{closeLoginScreen: boolean}>();
+	@Output() loggedInUser = new EventEmitter<{userName: string}>();
+
 	today: number; //yyyy-mm-dd
 	uName: string="";
 	password: string="";
@@ -36,6 +38,10 @@ export class LoginRegisterComponent implements OnInit {
 
 				this.loginError = false;
 				this.router.navigate(['user']);
+				this.loggedInUser.emit({
+					userName: resData[0].u_name
+				});
+
 				if(resData[0].u_name === "User"){
 					this.router.navigate(['user']);
 				} else{
@@ -72,6 +78,12 @@ export class LoginRegisterComponent implements OnInit {
 				setTimeout(() => {this.registerErr = false;}, 5000);
 			}
 			);
+	}
+	
+	close():void{
+		this.closeLogin.emit({
+			closeLoginScreen: false
+		});
 	}
 
 	ngOnInit(): void {

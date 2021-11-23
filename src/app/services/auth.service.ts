@@ -38,7 +38,7 @@ export class AuthService {
 			catchError(errorRes => {
 				let errorMessage = 'An unknown error occurred!';
 				
-				if (!errorRes.error.Error) {
+				if (!errorRes.error) {
 					return throwError(errorMessage);
 				}else {
 					return throwError(errorRes.error);
