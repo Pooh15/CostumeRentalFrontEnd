@@ -6,6 +6,10 @@
   border-right: 1px solid #edebef;
 }
 
+.card-img-top{
+  object-fit: contain;
+}
+
 .vertical-filters-header{
   font-weight: 500;
   text-transform: uppercase;
@@ -34,7 +38,7 @@
 .centered2{
  position: absolute;
  top: 53%;
- right: -6%;
+ right: -29%;
  transform: translate(-50%, -50%);
  color: red;
  font-size: inherit;
