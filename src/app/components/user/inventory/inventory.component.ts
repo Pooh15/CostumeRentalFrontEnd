@@ -16,6 +16,8 @@ export class InventoryComponent implements OnInit {
 	color: string[] = ['Red', 'Yellow','Pink'];
 	checkedColor: string[] = [];
 
+	inventory: any[] = [];
+
 	constructor(private inventoryService:InventoryService) { 
 
 	}
@@ -56,6 +58,13 @@ export class InventoryComponent implements OnInit {
 	}
 
 	getInventory(){
+		this.inventoryService.getItems().subscribe(data => {
+			console.log(data);
+			this.inventory = data;
+		});
+	}
+
+	getCategory(){
 		this.inventoryService.getCategory().subscribe(
 			resData => {
 				this.categoryArr = resData;
@@ -68,6 +77,7 @@ export class InventoryComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.getInventory();
+		this.getCategory();
 	}
 
 }
