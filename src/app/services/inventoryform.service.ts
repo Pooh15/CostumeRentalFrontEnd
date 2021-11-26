@@ -26,8 +26,12 @@ export class InventoryformService {
 		.pipe(
 			catchError(errorRes => {
 				let errorMessage = 'An unknown error occurred!';
-
-				return throwError(errorRes.error);
+				
+				if (!errorRes.error) {
+					return throwError(errorMessage);
+				}else {
+					return throwError(errorRes.error.message);
+				}
 			})
 			);
 	}

@@ -16,6 +16,12 @@ export class AddInventoryComponent implements OnInit {
 	rental_cost:number = 0;
 	deposite_cost:number = 0;
 	imageUrl: any = '';
+	selectedCat: string = 'Select Category';
+	selectedPattern: string = 'Select Pattern';
+	selectedSize: string = 'Select Size';
+	selectedMaterial: string = 'Select Material';
+	selectedColor: string = 'Select Color';
+	errorMessage: string = '';
 
 	categoryArr: {"c_id": number, "c_name": string}[] = [];
 	
@@ -37,84 +43,91 @@ export class AddInventoryComponent implements OnInit {
 			file = this.myFiles[i];
 		}
 		console.log(form);
-		// frmdata.append("imageName", file);
+		frmdata.append("imageName", file);
+		frmdata.append("inventoryObj",JSON.stringify(form));
 
-		// this.inventoryformService.createInventory(frmdata).subscribe(data => {
-			// 	console.log(data);
-			// });
-		}
+		this.inventoryformService.createInventory(frmdata).subscribe(data => {
+			console.log(data);
+		},
+		errorMessage => {
+			this.errorMessage = errorMessage;
+			setTimeout(() => {this.errorMessage = ''}, 5000);
+		});
 
-		onFileSelected(event: any){
-			if (event.target.files[0].size > 2000000) {
-				console.log('Image Size Cannot Exceed 2Mb Upload Failure');
-				return;
-			}
-			this.myFiles = event.target.files;
+}
 
-			var reader = new FileReader();
-			reader.readAsDataURL(event.target.files[0]); 
-			reader.onload = (_event) => { 
-				this.imageUrl = reader.result; 
-			}
 
-		}
-
-		getRentAndDeposit(){
-			console.log(this.originalCost);
-			if(this.originalCost > 500){
-				this.rental_cost = this.originalCost * 0.3;
-				this.deposite_cost = this.originalCost * 0.6;
-			} else {
-				this.rental_cost = this.originalCost * 0.25;
-				this.deposite_cost = this.originalCost * 0.5;
-			}
-		}
-
-		getTypesForNewInventory(){
-			this.inventoryService.getCategory().subscribe(
-				resData => {
-					this.categoryArr = resData;
-				},
-				errorMessage => {
-					console.log(errorMessage);
-				}
-				);
-
-			this.inventoryService.getPattern().subscribe(
-				resData => {
-					this.pattern = resData;
-				},
-				errorMessage => {
-					console.log(errorMessage);
-				}
-				);
-			this.inventoryService.getColor().subscribe(
-				resData => {
-					this.color = resData;
-				},
-				errorMessage => {
-					console.log(errorMessage);
-				}
-				);
-			this.inventoryService.getSize().subscribe(
-				resData => {
-					this.size = resData;
-				},
-				errorMessage => {
-					console.log(errorMessage);
-				}
-				); 
-			this.inventoryService.getCloth().subscribe(
-				resData => {
-					this.cloth = resData;
-				},
-				errorMessage => {
-					console.log(errorMessage);
-				}
-				); 
-		}
-		ngOnInit(): void {
-			this.getTypesForNewInventory()
-		}
-
+onFileSelected(event: any){
+	if (event.target.files[0].size > 2000000) {
+		console.log('Image Size Cannot Exceed 2Mb Upload Failure');
+		return;
 	}
+	this.myFiles = event.target.files;
+
+	var reader = new FileReader();
+	reader.readAsDataURL(event.target.files[0]); 
+	reader.onload = (_event) => { 
+		this.imageUrl = reader.result; 
+	}
+
+}
+
+getRentAndDeposit(){
+	console.log(this.originalCost);
+	if(this.originalCost > 500){
+		this.rental_cost = this.originalCost * 0.3;
+		this.deposite_cost = this.originalCost * 0.6;
+	} else {
+		this.rental_cost = this.originalCost * 0.25;
+		this.deposite_cost = this.originalCost * 0.5;
+	}
+}
+
+getTypesForNewInventory(){
+	this.inventoryService.getCategory().subscribe(
+		resData => {
+			this.categoryArr = resData;
+		},
+		errorMessage => {
+			console.log(errorMessage);
+		}
+		);
+
+	this.inventoryService.getPattern().subscribe(
+		resData => {
+			this.pattern = resData;
+		},
+		errorMessage => {
+			console.log(errorMessage);
+		}
+		);
+	this.inventoryService.getColor().subscribe(
+		resData => {
+			this.color = resData;
+		},
+		errorMessage => {
+			console.log(errorMessage);
+		}
+		);
+	this.inventoryService.getSize().subscribe(
+		resData => {
+			this.size = resData;
+		},
+		errorMessage => {
+			console.log(errorMessage);
+		}
+		); 
+	this.inventoryService.getCloth().subscribe(
+		resData => {
+			this.cloth = resData;
+		},
+		errorMessage => {
+			console.log(errorMessage);
+		}
+		); 
+}
+ngOnInit(): void {
+	this.getTypesForNewInventory()
+}
+
+}
