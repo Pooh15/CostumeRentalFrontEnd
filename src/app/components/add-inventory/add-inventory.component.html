@@ -1,13 +1,98 @@
-<form enctype="multipart/form-data" (ngSubmit)="onSubmit(form)" #form="ngForm">
-	<div class="form-group">
-		<label for="exampleFormControlFile1">Example file input</label>
-		<input type="text" name="fname" [(ngModel)]="fname">
-		<input type="text" name="lname" [(ngModel)]="lname">
+<div class="container-fluid card mt-3 px-5">	
+	<!-- <form enctype="multipart/form-data" (ngSubmit)="onSubmit(form)" #form="ngForm">
+		<div class="form-group">
+			<label for="exampleFormControlFile1">Example file input</label>
+			<input type="text" name="fname" [(ngModel)]="fname">
+			<input type="text" name="lname" [(ngModel)]="lname">
 
-		<input type="file" class="form-control-file" 
-		id="exampleFormControlFile1" (change)="onFileSelected($event)"
-		name='imageName' accept="image/*">
+			<input type="file" class="form-control-file" 
+			id="exampleFormControlFile1" (change)="onFileSelected($event)"
+			name='imageName' accept="image/*">
+
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+-->
+
+<form enctype="multipart/form-data"(ngSubmit)="onSubmit(form.value)" #form="ngForm">
+	<div class="form-group">
+		<div class="row mt-5">
+			<div class="col-8">
+				
+				<div class="row row-cols-3 mt-3">
+					<div class="col mb-3">
+						<input type="text" class="form-control" id="item_name" name="item_name" placeholder="Item Name" ngModel autocomplete="off">
+					</div>
+					<div class="col mb-3">
+						<select class="form-select form-control" aria-label="Default select example" name="category">
+							<option selected>Select Category</option>
+							<option *ngFor="let title of categoryArr" [value]="title.c_id">
+								{{title.c_name}}
+							</option>
+						</select>
+					</div>
+					<div class="col mb-3">
+						<select class="form-select" aria-label="Default select example">
+							<option selected>Select Pattern</option>
+							<option *ngFor="let title of pattern" [value]="title.p_id">
+								{{title.p_name}}
+							</option>
+						</select>	
+					</div>
+					<div class="col mb-3">
+						<select class="form-select" aria-label="Default select example">
+							<option selected>Select Size</option>
+							<option *ngFor="let title of size" [value]="title.s_id">
+								{{title.s_name}}
+							</option>
+						</select>
+					</div>
+					<div class="col mb-3">
+						<select class="form-select" aria-label="Default select example">
+							<option selected>Select ClothMaterial</option>
+							<option *ngFor="let title of cloth" [value]="title.cloth_id">
+								{{title.material_name}}
+							</option>
+						</select>
+					</div>
+					<div class="col mb-3">
+						<select class="form-select" aria-label="Default select example">
+							<option selected>Select Color</option>
+							<option *ngFor="let title of color" [value]="title.color_id">
+								{{title.color}}
+							</option>
+						</select>	
+					</div>
+					<div class="col mb-3">
+						<input type="number" class="form-control" id="original_price" name="original_price" placeholder="Rental Amount" [(ngModel)]='originalCost' 
+						(change)="getRentAndDeposit()" autocomplete="off">
+					</div>
+					<div class="col mb-3 price">
+						<div> Rental Price will be: <span class="fw-bolder ms-3">{{rental_cost|currency}}</span></div>
+					</div>
+					<div class="col mb-3 price">
+						<div> Deposit will be: <span class="fw-bolder ms-3">{{deposite_cost|currency}}</span></div>	
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="row row-cols-3 mt-3">
+					<div class="col mb-3">
+						<input type="file" class="form-control-file" accept="image/jpeg"
+						id="exampleFormControlFile1" (change)="onFileSelected($event)"
+						name='imageName' accept="image/*">
+					</div>
+				</div>
+				<div *ngIf="imageUrl != ''">
+					<img [src]="imageUrl" alt="imageName" width="100" />
+				</div>
+			</div>
+		</div>
 		
-	</div>
-	<button type="submit" class="btn btn-primary">Submit</button>
+		
+	</div>	
+	<button type="submit" class="btn btn-primary mb-3">Submit</button>
 </form>
+
+</div>

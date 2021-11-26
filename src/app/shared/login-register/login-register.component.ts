@@ -43,10 +43,10 @@ export class LoginRegisterComponent implements OnInit {
 					userName: resData[0].u_name
 				});
 
-				if(resData[0].u_name === "User"){
+				if(resData[0].role_name === "User"){
 					this.router.navigate(['user']);
 				} else{
-					//this.router.navigate(['admin']);
+					this.router.navigate(['admin']);
 				}
 			},
 			errorMessage => {

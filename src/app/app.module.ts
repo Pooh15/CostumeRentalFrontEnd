@@ -28,6 +28,8 @@ import { AddInventoryComponent } from './components/add-inventory/add-inventory.
 import { LoginRegisterComponent } from './shared/login-register/login-register.component';
 import { UserActionsComponent } from './components/user/user-actions/user-actions.component';
 import { CheckOrderComponent } from './components/user/check-order/check-order.component';
+import { CustomerPurchaseComponent } from './components/admin/customer-purchase/customer-purchase.component';
+import { AdminActionsComponent } from './components/admin/admin-actions/admin-actions.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { CheckOrderComponent } from './components/user/check-order/check-order.c
   AddInventoryComponent,
   LoginRegisterComponent,
   UserActionsComponent,
-  CheckOrderComponent
+  CheckOrderComponent,
+  CustomerPurchaseComponent,
+  AdminActionsComponent
   ],
   imports: [
   BrowserModule,
