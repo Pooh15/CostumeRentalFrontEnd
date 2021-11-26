@@ -27,33 +27,26 @@
 }
 
 .centered{
- position: absolute;
- top: 45%;
- right: 1%;
- transform: translate(-50%, -50%);
- color: red;
- font-size: x-large;
+  position: absolute;
+  top: 41%;
+  right: -29%;
+  transform: translate(-50%, -50%);
+  font-size: inherit;
+  background: #ff646b;
+  opacity: .9;
+  padding: 1%;
+  text-align: center;
 }
 
-.centered2{
- position: absolute;
- top: 53%;
- right: -29%;
- transform: translate(-50%, -50%);
- color: red;
- font-size: inherit;
- font-weight: 600;
-}
-
-.laundry-status{
- position: absolute;
- top: 50%;
- right: -9%;
- transform: translate(-50%, -50%);
- font-size: inherit;
- background: #56f18d;
- opacity: .9;
- padding: 1%;
- text-align: center;
-}
+ .laundry-status{
+   position: absolute;
+   top: 41%;
+   right: -9%;
+   transform: translate(-50%, -50%);
+   font-size: inherit;
+   background: #56f18d;
+   opacity: .9;
+   padding: 1%;
+   text-align: center;
+ }
 

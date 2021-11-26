@@ -51,24 +51,29 @@
 					<div class="card-content">
 						<span><h3 style="font-size: 1rem;" class="mb-0 fw-bold"
 							>{{item.item_name}}</h3> </span>
-							{{item.p_name}}-{{item.material_name}}
+							<span class="fst-italic">{{item.p_name}}-{{item.material_name}}</span>
 						</div>
-						<div>size: {{item.s_name}}</div>
+						<p class="mb-0"><span class="fw-bolder">size: </span>{{item.s_name}}</p>
 						<div class="fw-normal fw-bolder">{{item.rental_price|currency}}
 							<span class="text-decoration-line-through fw-lighter">{{item.original_price|currency}}</span>
-
 						</div>
+                        <p><span class="fw-bolder">Deposit Required: </span>{{item.advance_amount}}</p>
+                        <button class="btn btn-primary btn-sm btn d-grid gap-2 col-6 mx-auto mt-2">
+                            Add Cart
+                        </button>
 					</div>
 				</div>
 			</div>
 	</div>
 	<div *ngIf="item.order_count"
-	[ngClass]="{'centered': item.order_count != undefined}">Out Of Stock</div>
+	[ngClass]="{'centered': item.order_count != undefined}">Out Of Stock
+    <div>Approx. availability by {{item.item_available_On}}</div>
+</div>
 	<!-- <div class="centered">In Laundry</div> -->
-	<div *ngIf="item.order_count" class="centered2">Approx. availability by {{item.item_available_On}}</div>
+	
 
 <div *ngIf="item.Laundry_count" [ngClass]="{'laundry-status': item.Laundry_count != null}"> In Laundry
-<div *ngIf="item.Laundry_count" class="laundry-available">Available on {{item.expected_laundry_out_date}}</div></div>
+<div>Available on {{item.expected_laundry_out_date}}</div></div>
 
 </div>
 
