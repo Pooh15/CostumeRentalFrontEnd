@@ -7,7 +7,7 @@ import { InventoryService } from 'src/app/services/inventory.service';
 	styleUrls: ['./inventory.component.css']
 })
 export class InventoryComponent implements OnInit {
-	categoryList : any[]=[];
+	
 	categoryArr: {"c_id": number, "c_name": string}[] = [];
 	checkedCategory: number[] = [];
 
@@ -42,7 +42,7 @@ export class InventoryComponent implements OnInit {
 
 		this.inventoryService.getCategoryDetails(this.checkedCategory).subscribe(
 			resData => {
-				this.categoryList=resData;
+				this.inventory=resData;
 			},
 			errorMessage => {
 				console.log(errorMessage);
@@ -59,7 +59,14 @@ export class InventoryComponent implements OnInit {
 				this.checkedPattern.splice(index, 1);
 			}
 		}
-		console.log(this.checkedPattern)	
+		this.inventoryService.getPatternDetails(this.checkedPattern).subscribe(
+			resData => {
+				this.inventory=resData;
+			},
+			errorMessage => {
+				console.log(errorMessage);
+			}
+			);
 	}
 
 	getColor(event: any){
@@ -71,7 +78,14 @@ export class InventoryComponent implements OnInit {
 				this.checkedColor.splice(index, 1);
 			}
 		}
-		console.log(this.checkedColor)
+		this.inventoryService.getColorDetails(this.checkedColor).subscribe(
+			resData => {
+				this.inventory=resData;
+			},
+			errorMessage => {
+				console.log(errorMessage);
+			}
+			);
 	}
 
 	getSize(event: any){
@@ -83,7 +97,14 @@ export class InventoryComponent implements OnInit {
 				this.checkedSize.splice(index, 1);
 			}
 		}
-		console.log(this.checkedSize)
+		this.inventoryService.getSizeDetails(this.checkedSize).subscribe(
+			resData => {
+				this.inventory=resData;
+			},
+			errorMessage => {
+				console.log(errorMessage);
+			}
+			);
 	}
 
 	getCloth(event: any){
@@ -95,7 +116,14 @@ export class InventoryComponent implements OnInit {
 				this.checkedCloth.splice(index, 1);
 			}
 		}
-		console.log(this.checkedCloth)
+		this.inventoryService.getClothDetails(this.checkedCloth).subscribe(
+			resData => {
+				this.inventory=resData;
+			},
+			errorMessage => {
+				console.log(errorMessage);
+			}
+			);
 	}
 
 	getInventory(){
