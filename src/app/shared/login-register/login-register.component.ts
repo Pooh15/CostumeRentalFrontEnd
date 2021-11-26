@@ -35,6 +35,7 @@ export class LoginRegisterComponent implements OnInit {
 				window.sessionStorage.setItem("dob", resData[0].dob);
 				window.sessionStorage.setItem("phone", resData[0].phone.toString());
 				window.sessionStorage.setItem("email", resData[0].email);
+				window.sessionStorage.setItem("user_id", resData[0].user_id);
 
 				this.loginError = false;
 				this.router.navigate(['user']);

@@ -1,1 +1,35 @@
-<p>check-order works!</p>
+<div class="row row-cols-1 row-cols-md-3">
+	<div class="col" *ngFor="let item of orderList">
+		<div class="card mt-3" style="max-width: 540px;">
+			<div class="row g-0">
+				<div class="col-md-4">
+					<img [src]="item.image" class="img-fluid rounded-start" alt="Rented Item Images" style="object-fit: contain;">
+				</div>
+				<div class="col-md-8">
+					<div class="card-body">
+						<h3 style="font-size: 1rem;" class="mb-0 fw-bold"
+							>{{item.item_name}}</h3>
+							
+								<span>Pattern: {{item.p_name}}</span>
+								<div>Material: {{item.material_name}}</div>
+							
+						<p class="card-text fw-normal fw-bolder mb-0">
+							{{item.rental_price|currency}}
+							<span class="text-decoration-line-through fw-lighter text-muted ms-2"> {{item.original_price|currency}}</span>
+						</p>
+						<p class="card-text"><span>
+							Rent Date: {{item.rent_date|date}}
+						</span>
+						<span *ngIf="item.return_date != null ; else toBeReturned">Item Returned on: {{item.return_date | date}}</span>
+						<ng-template #toBeReturned>
+							<span class="returnBy">
+								Item needs to return
+							</span>
+						</ng-template>
+					</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
