@@ -35,4 +35,45 @@ export class InventoryformService {
 			})
 			);
 	}
+
+	createCategory(category: {"categoryName": string}){
+		return this.http
+		.post<ResponseData>(
+			`${this.appUrl}/category/create`,category)
+		.pipe(map( response => {  
+			console.log(response);
+			return response; 
+		}), 
+		catchError(errorRes => {
+			let errorMessage = 'An unknown error occurred!';
+
+			if (!errorRes.error) {
+				return throwError(errorMessage);
+			}else {
+				return throwError(errorRes.error.message);
+			}
+		})
+		);
+	}
+
+	addPattern(patternName :string, categoryId: number){
+		return this.http
+		.post<ResponseData>(
+			`${this.appUrl}/category/createPattern`,
+			{"patternName": patternName, "categoryId": categoryId})
+		.pipe(map( response => {  
+			console.log(response);
+			return response; 
+		}), 
+		catchError(errorRes => {
+			let errorMessage = 'An unknown error occurred!';
+
+			if (!errorRes.error) {
+				return throwError(errorMessage);
+			}else {
+				return throwError(errorRes.error.message);
+			}
+		})
+		);
+	}
 }

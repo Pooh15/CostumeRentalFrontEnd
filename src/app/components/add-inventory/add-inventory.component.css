@@ -6,3 +6,24 @@
 	display: flex;
 	align-items: center;
 }
+
+.bi-plus, .bi-x-lg, .bi-plus-square{
+	background: #4e4ebd;
+	color: white;
+	padding: 8px;
+	border-radius: 6px;
+}
+
+.add{
+	cursor: pointer;
+}
+
+.add i:hover{
+	color: black;
+	border: 1px solid blue;
+	background-color: white;
+}
+
+button.btn.btn-primary.mb-3.me-5:disabled{
+	cursor: not-allowed;
+}

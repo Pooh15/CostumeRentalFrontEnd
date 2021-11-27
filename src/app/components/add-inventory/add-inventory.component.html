@@ -5,26 +5,32 @@
 		<div class="row mt-5">
 			<div class="col-8">
 
-				<div class="row row-cols-3 mt-3">
-					<div class="col mb-3">
-						<input type="text" class="form-control" id="item_name" name="item_name" placeholder="Item Name" ngModel autocomplete="off">
-					</div>
-					<div class="col mb-3">
-						<select class="form-select form-control" name="c_id"
-						[(ngModel)]="selectedCat"><option disabled selected hidden> Select Category</option>
-						<option *ngFor="let category of categoryArr" [value]="category.c_id">
-							{{category.c_name}}
-						</option>
-					</select>
-				</div>
-				<div class="col mb-3">
-					<select class="form-select form-control" name="p_id"
+			<div class="row row-cols-3 mt-3">
+			<div class="col mb-3">
+				<input type="text" class="form-control" id="item_name" name="item_name" placeholder="Item Name" ngModel autocomplete="off">
+			</div>
+			<div class="col mb-3 d-flex justify-content-center" *ngIf="!addPatternBtn">
+				<select class="form-select form-control" name="c_id"
+					[(ngModel)]="selectedCat"><option disabled selected hidden> Select Category</option>
+					<option *ngFor="let category of categoryArr" [value]="category.c_id">
+						{{category.c_name}}
+					</option>
+				</select>
+				<span class="mt-2 add" (click)="catClicked = !catClicked">
+					<i class="bi bi-plus"></i>
+				</span>
+			</div>
+			<div class="col mb-3 d-flex justify-content-center">
+				<select class="form-select form-control" name="p_id"
 					[(ngModel)]="selectedPattern">
 					<option disabled selected hidden>Select Pattern</option>
 					<option *ngFor="let title of pattern" [value]="title.p_id">
 						{{title.p_name}}
 					</option>
-				</select>	
+				</select>
+				<span class="mt-2 add" (click)="addPatternBtn = !addPatternBtn">
+					<i class="bi bi-plus"></i>
+				</span>	
 			</div>
 			<div class="col mb-3">
 				<select class="form-select form-control" name="s_id"
@@ -45,7 +51,7 @@
 		</select>
 	</div>
 	<div class="col mb-3">
-		<select class="form-select" name="color_id" 						[(ngModel)]="selectedColor">
+		<select class="form-select" name="color_id" [(ngModel)]="selectedColor">
 			<option  selected disabled hidden>Select Color</option>
 			<option *ngFor="let title of color" [value]="title.color_id">
 				{{title.color}}
@@ -86,10 +92,40 @@
 
 </div>	
 <div style="display: flex;">
-<button type="submit" class="btn btn-primary mb-3 me-5">Submit</button>
-<span *ngIf="errorMessage != ''"><div class="alert alert-danger" role="alert">
+<button type="submit" class="btn btn-primary mb-3 me-5 align-self-baseline"
+[disabled]="catClicked || addPatternBtn">Submit</button>
+<span *ngIf="errorMessage != ''"><div class="alert alert-danger me-3" role="alert">
 	Error: {{errorMessage}}
 </div></span>
+
+<span *ngIf="successMsg != ''"><div class="alert alert-success" role="alert">
+	Success: {{successMsg}}
+</div></span>
+<div *ngIf="catClicked" class="col-3" style="display: flex;
+    align-items: baseline;">
+		<input type="text" [(ngModel)]="categoryName" 
+		name="newCategory" placeholder="newCategory" class="form-control"/>
+		<span  class="mt-2 add my-2" (click)="addCat()"><i class="bi bi-plus-square"
+			style="margin: 5px;"></i></span>
+		<span  class="mt-2 add my-2" (click)="catClicked = !catClicked"><i class="bi bi-x-lg"></i></span>
+</div>
+
+<div *ngIf="addPatternBtn" class="col-6 d-flex">
+    <div class="mb-3 col-6">
+		<select class="form-select form-control" name="c_id"
+			[(ngModel)]="selectedCat"><option disabled selected hidden> Select Category</option>
+			<option *ngFor="let cat of categoryArr" [value]="cat.c_id">
+				{{cat.c_name}}
+			</option>
+		</select>
+	</div>
+	<input type="text" [(ngModel)]="newPattern" 
+	name="newPattern" placeholder="New Pattern" class="form-control align-self-start ms-2"/>
+	<span  class="mt-2 add my-2" (click)="addPattern()"><i class="bi bi-plus-square"
+		style="margin: 5px;"></i></span>
+	<span  class="mt-2 add my-2" (click)="addPatternBtn = !addPatternBtn"><i class="bi bi-x-lg"></i></span>
+</div>
+
 </div>
 </form>
 

@@ -10,8 +10,6 @@ import {InventoryService} from '../../services/inventory.service';
 })
 export class AddInventoryComponent implements OnInit {
 	myFiles:string [] = [];
-	fname: string="";
-	lname: string="";
 	originalCost: number = 0;
 	rental_cost:number = 0;
 	deposite_cost:number = 0;
@@ -22,6 +20,11 @@ export class AddInventoryComponent implements OnInit {
 	selectedMaterial: string = 'Select Material';
 	selectedColor: string = 'Select Color';
 	errorMessage: string = '';
+	categoryName: string = '';
+	catClicked: boolean = false;
+	successMsg: string = '';
+	addPatternBtn: boolean = false;
+	newPattern: string = '';
 
 	categoryArr: {"c_id": number, "c_name": string}[] = [];
 	
@@ -46,15 +49,15 @@ export class AddInventoryComponent implements OnInit {
 		frmdata.append("imageName", file);
 		frmdata.append("inventoryObj",JSON.stringify(form));
 
-		this.inventoryformService.createInventory(frmdata).subscribe(data => {
-			console.log(data);
-		},
-		errorMessage => {
-			this.errorMessage = errorMessage;
-			setTimeout(() => {this.errorMessage = ''}, 5000);
-		});
+		// this.inventoryformService.createInventory(frmdata).subscribe(data => {
+			// 	console.log(data);
+			// },
+			// errorMessage => {
+				// 	this.errorMessage = errorMessage;
+				// 	setTimeout(() => {this.errorMessage = ''}, 5000);
+				// });
 
-}
+			}
 
 
 onFileSelected(event: any){
@@ -83,7 +86,7 @@ getRentAndDeposit(){
 	}
 }
 
-getTypesForNewInventory(){
+getCategory(){
 	this.inventoryService.getCategory().subscribe(
 		resData => {
 			this.categoryArr = resData;
@@ -92,7 +95,8 @@ getTypesForNewInventory(){
 			console.log(errorMessage);
 		}
 		);
-
+}
+getPattern(){
 	this.inventoryService.getPattern().subscribe(
 		resData => {
 			this.pattern = resData;
@@ -101,6 +105,9 @@ getTypesForNewInventory(){
 			console.log(errorMessage);
 		}
 		);
+}
+
+getColor(){
 	this.inventoryService.getColor().subscribe(
 		resData => {
 			this.color = resData;
@@ -109,6 +116,9 @@ getTypesForNewInventory(){
 			console.log(errorMessage);
 		}
 		);
+}
+
+getSize(){
 	this.inventoryService.getSize().subscribe(
 		resData => {
 			this.size = resData;
@@ -117,6 +127,8 @@ getTypesForNewInventory(){
 			console.log(errorMessage);
 		}
 		); 
+}
+getCloth(){
 	this.inventoryService.getCloth().subscribe(
 		resData => {
 			this.cloth = resData;
@@ -126,8 +138,48 @@ getTypesForNewInventory(){
 		}
 		); 
 }
+
+
+addCat(){
+	console.log(this.categoryName)
+
+	this.inventoryformService.createCategory({"categoryName":this.categoryName})
+	.subscribe(data => {
+		this.successMsg = 'Category addition Success!';
+		this.getCategory();
+
+		setTimeout(() => {this.successMsg = ''}, 5000);
+		this.catClicked = !this.catClicked;
+	},
+	errorMessage => {
+		this.errorMessage = errorMessage;
+		setTimeout(() => {this.errorMessage = ''}, 5000);
+	});
+}
+
+addPattern(){
+	
+console.log(this.newPattern+ "  "+ this.selectedCat)
+	this.inventoryformService.addPattern(this.newPattern, parseInt(this.selectedCat))
+	.subscribe(data => {
+		this.successMsg = 'Pattern addition Success!';
+		this.getPattern();
+
+		setTimeout(() => {this.successMsg = ''}, 5000);
+		this.addPatternBtn = !this.addPatternBtn;
+	},
+	errorMessage => {
+		this.errorMessage = errorMessage;
+		setTimeout(() => {this.errorMessage = ''}, 5000);
+	});
+}
+
 ngOnInit(): void {
-	this.getTypesForNewInventory()
+	this.getCategory();
+	this.getPattern();
+	this.getColor();
+	this.getCloth();
+	this.getSize();
 }
 
 }
