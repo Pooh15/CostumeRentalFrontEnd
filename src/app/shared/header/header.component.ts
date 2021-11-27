@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {MessageService} from '../../services/message.service';
+
 
 @Component({
 	selector: 'app-header',
@@ -9,8 +11,9 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 	loginFlag: boolean = false;
 	userName:string = "";
-
-	constructor(private router:Router) { 
+	count: number = 0;
+	
+	constructor(private router:Router, private messageService: MessageService) { 
 
 	}
 	loginOpenClose(closeLogin: {closeLoginScreen: boolean}){
@@ -33,5 +36,9 @@ export class HeaderComponent implements OnInit {
 		this.userName = '';
 		this.router.navigate(['home']);
 	}
-	ngOnInit(): void { }
+	ngOnInit(): void {
+		this.messageService.count.subscribe(c => {
+			this.count = c;
+		});
+	}
 }

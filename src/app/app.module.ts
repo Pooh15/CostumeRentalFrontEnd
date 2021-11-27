@@ -30,6 +30,7 @@ import { UserActionsComponent } from './components/user/user-actions/user-action
 import { CheckOrderComponent } from './components/user/check-order/check-order.component';
 import { CustomerPurchaseComponent } from './components/admin/customer-purchase/customer-purchase.component';
 import { AdminActionsComponent } from './components/admin/admin-actions/admin-actions.component';
+import { CartDetailsComponent } from './components/user/cart-details/cart-details.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AdminActionsComponent } from './components/admin/admin-actions/admin-ac
   UserActionsComponent,
   CheckOrderComponent,
   CustomerPurchaseComponent,
-  AdminActionsComponent
+  AdminActionsComponent,
+  CartDetailsComponent
   ],
   imports: [
   BrowserModule,

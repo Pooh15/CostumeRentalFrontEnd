@@ -57,3 +57,10 @@
 .modal-footer button:hover{
   text-decoration: underline;
 }
+
+.bi-cart3{
+  background: #fdfdfd;
+  color: black;
+  padding: 8px 12px;
+  border-radius: 6px;
+}

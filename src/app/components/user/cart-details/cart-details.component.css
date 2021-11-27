@@ -1,0 +1,10 @@
+.cart-detail{
+  background-color: red;
+  width: 550px;
+  margin-bottom: 9rem;
+  position: 45%;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+}

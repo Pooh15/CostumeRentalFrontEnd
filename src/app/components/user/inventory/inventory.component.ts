@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InventoryService } from 'src/app/services/inventory.service';
+import {MessageService} from '../../../services/message.service'; 
 
 @Component({
 	selector: 'app-inventory',
@@ -24,10 +25,24 @@ export class InventoryComponent implements OnInit {
 	checkedCloth: string[] = [];
 
 	inventory: any[] = [];
+	openCartFlag: boolean = false;
 
+	constructor(private inventoryService:InventoryService,
 
-	constructor(private inventoryService:InventoryService) { 
+		private messageService: MessageService) { 
+	}
+	
+	closeCart(closeCart: {closeCartOverlay: boolean}){
+    this.openCartFlag = closeCart.closeCartOverlay;
+  }
 
+	addCart(itemId: number, element: any){
+		if(element.textContent == 'Go To Cart'){
+			this.openCartFlag = true;
+		} else {	
+			element.textContent = 'Go To Cart';
+			this.messageService.nextCount(itemId);
+		}
 	}
 
 	getItem(event: any, index: number) {

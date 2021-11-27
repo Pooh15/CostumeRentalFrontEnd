@@ -58,7 +58,9 @@
 							<span class="text-decoration-line-through fw-lighter">{{item.original_price|currency}}</span>
 						</div>
                         <p><span class="fw-bolder">Deposit Required: </span>{{item.advance_amount}}</p>
-                        <button class="btn btn-primary btn-sm btn d-grid gap-2 col-6 mx-auto mt-2">
+                        <button class="btn btn-primary btn-sm btn d-grid gap-2 col-6 mx-auto mt-2" (click)="addCart(item.item_id, $event.target)"
+                        [ngClass]="{'disabled': item.order_count != undefined
+                        || item.Laundry_count != null}">
                             Add Cart
                         </button>
 					</div>
@@ -74,9 +76,12 @@
 
 <div *ngIf="item.Laundry_count" [ngClass]="{'laundry-status': item.Laundry_count != null}"> In Laundry
 <div>Available on {{item.expected_laundry_out_date}}</div></div>
-
 </div>
-
 		</div>
 	</div>
+</div>
+
+<div *ngIf="openCartFlag">
+<app-cart-details [showCart]="true"
+(closeCartchild)="closeCart($event)"></app-cart-details>
 </div>
