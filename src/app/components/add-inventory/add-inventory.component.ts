@@ -39,25 +39,27 @@ export class AddInventoryComponent implements OnInit {
 	constructor(private inventoryformService: InventoryformService,
 		private inventoryService: InventoryService) { }
 
-	onSubmit(form: NgForm){
-		const frmdata = new FormData();
-		let file: any=null;
-		for (var i = 0; i < this.myFiles.length; i++) { 
-			file = this.myFiles[i];
-		}
-		console.log(form);
-		frmdata.append("imageName", file);
-		frmdata.append("inventoryObj",JSON.stringify(form));
+onSubmit(form: NgForm){
+	const frmdata = new FormData();
+	let file: any=null;
+	for (var i = 0; i < this.myFiles.length; i++) { 
+		file = this.myFiles[i];
+	}
+	console.log(form);
+	frmdata.append("imageName", file);
+	frmdata.append("inventoryObj",JSON.stringify(form));
 
-		// this.inventoryformService.createInventory(frmdata).subscribe(data => {
-			// 	console.log(data);
-			// },
-			// errorMessage => {
-				// 	this.errorMessage = errorMessage;
-				// 	setTimeout(() => {this.errorMessage = ''}, 5000);
-				// });
+	this.inventoryformService.createInventory(frmdata).subscribe(data => {
+		console.log(data);
+		this.successMsg = 'Inventory Added Successfully!';
+		setTimeout(() => {this.successMsg = ''}, 6000);
+	},
+	errorMessage => {
+		this.errorMessage = errorMessage;
+		setTimeout(() => {this.errorMessage = ''}, 5000);
+	});
 
-			}
+}
 
 
 onFileSelected(event: any){
@@ -79,10 +81,10 @@ getRentAndDeposit(){
 	console.log(this.originalCost);
 	if(this.originalCost > 500){
 		this.rental_cost = this.originalCost * 0.3;
-		this.deposite_cost = this.originalCost * 0.6;
+		this.deposite_cost = this.originalCost * 0.8;
 	} else {
 		this.rental_cost = this.originalCost * 0.25;
-		this.deposite_cost = this.originalCost * 0.5;
+		this.deposite_cost = this.originalCost * 0.15;
 	}
 }
 
