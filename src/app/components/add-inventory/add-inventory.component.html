@@ -4,7 +4,7 @@
 	<div class="form-group">
 		<div class="row mt-5">
 			<div class="col-8">
-				
+
 				<div class="row row-cols-3 mt-3">
 					<div class="col mb-3">
 						<input type="text" class="form-control" id="item_name" name="item_name" placeholder="Item Name" ngModel autocomplete="off">
@@ -53,6 +53,7 @@
 		</select>	
 	</div>
 	<div class="col mb-3">
+		<small>Original Cost: </small>
 		<input type="number" class="form-control" id="original_price" name="original_price" placeholder="Rental Amount" [(ngModel)]='originalCost' 
 		(change)="getRentAndDeposit()" autocomplete="off">
 	</div>
@@ -62,7 +63,10 @@
 	<div class="col mb-3 price">
 		<div> Deposit will be: <span class="fw-bolder ms-3">{{deposite_cost|currency}}</span></div>	
 	</div>
-
+	<div class="col mb-3">
+		<input type="number" class="form-control" id="count_inv" name="count_inv" placeholder="Number of Pieces/Count" ngModel
+		autocomplete="off">
+	</div>
 </div>
 </div>
 <div class="col-4">
