@@ -12,7 +12,8 @@ export class HeaderComponent implements OnInit {
 	loginFlag: boolean = false;
 	userName:string = "";
 	count: number = 0;
-	
+	openCartFlag: boolean = false;
+
 	constructor(private router:Router, private messageService: MessageService) { 
 
 	}
@@ -36,6 +37,11 @@ export class HeaderComponent implements OnInit {
 		this.userName = '';
 		this.router.navigate(['home']);
 	}
+	
+	closeCart(closeCart: {closeCartOverlay: boolean}){
+    	this.openCartFlag = closeCart.closeCartOverlay;
+  	}
+
 	ngOnInit(): void {
 		this.messageService.count.subscribe(c => {
 			this.count = c;

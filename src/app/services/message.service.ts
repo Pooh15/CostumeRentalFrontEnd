@@ -6,7 +6,7 @@ export class MessageService {
   messages: string[] = [];
   counter = 0;
   count: BehaviorSubject<number>;
-  cartItems:number[] = [];
+  cartItemArr = new BehaviorSubject<any[]>([]);
 
   constructor(){
   	this.count  = new BehaviorSubject(this.counter);
@@ -17,9 +17,8 @@ export class MessageService {
   }
 
   nextCount(itemId: number) {
-  	this.cartItems.push(itemId);
+  	this.cartItemArr.next(this.cartItemArr.getValue().concat([itemId]));
     this.count.next(++ this.counter);
-    console.log(this.cartItems)
   }
 
   clear() {

@@ -1,10 +1,29 @@
 .cart-detail{
-  background-color: red;
-  width: 550px;
-  margin-bottom: 9rem;
-  position: 45%;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  z-index: 10;
+	width: 480px;
+	height: 80%;
+	position: 45%;
+	position: fixed;
+	z-index: 10;
+	background-color: #afaced;
+	max-width: 900px;
+	margin: auto;
+	padding: 17px;
+	border-radius: 15px;
+	right: 0px;
+	bottom: 5%;
+	overflow: auto;
+}
+
+.add i:hover{
+	color: black;
+	border: 1px solid blue;
+	background-color: white;
+	cursor: pointer;
+}
+
+.bi.bi-plus, .bi.bi-dash-lg{
+	background: #4e4ebd;
+	color: white;
+	padding: 8px;
+	border-radius: 6px;
 }

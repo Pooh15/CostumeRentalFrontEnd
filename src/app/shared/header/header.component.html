@@ -18,7 +18,7 @@
     <form class="header-menu nav-item">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     </form>
-  <div class="mt-2 me-4 position-relative">
+  <div class="mt-2 me-4 position-relative" (click)="openCartFlag = !openCartFlag">
      <i class="bi bi-cart3 my-5"></i>
     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light border border-danger" style="color:black">
     {{count}}
@@ -48,4 +48,9 @@
 <div *ngIf="loginFlag">
   <app-login-register (closeLogin)="loginOpenClose($event)" 
   (loggedInUser)="updateUserName($event)"></app-login-register>
+</div>
+
+<div *ngIf="openCartFlag">
+<app-cart-details [showCart]="true"
+(closeCartchild)="closeCart($event)"></app-cart-details>
 </div>

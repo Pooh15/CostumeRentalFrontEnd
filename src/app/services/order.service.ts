@@ -27,4 +27,12 @@ export class OrderService {
 			);//end pipe
 	}
 
+	getWishList(arr: any): Observable<any[]>{
+		return this.http.get<any[]>(`${this.appUrl}/inventory/getWishList/${arr}`)
+		.pipe(
+			map( response => {
+				return response[0];
+			}),catchError(this.handleError('getWishList', []))
+			);//end pipe
+	} 
 }
