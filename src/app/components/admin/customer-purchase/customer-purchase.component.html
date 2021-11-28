@@ -1,3 +1,38 @@
-<div class="container-fluid mt-3">
-	Customer orders
-</div>
+<!doctype html>
+<html lang="en">
+<body>
+	<table class="table">
+		<thead>
+		  <tr>
+			<th scope="col">User Name</th>
+			<th scope="col">Contact Number</th>
+			<th scope="col">Order ID</th>
+			<th scope="col">Item Name</th>
+			<th scope="col">Item Count</th>
+			<th scope="col">Rent Date</th>
+			<th scope="col">Return Date</th>
+			<th scope="col">Rental Price</th>
+			<th scope="col">Advance Price</th>			
+			<th scope="col">Image</th>
+			<th scope="col">Return Item</th>
+		 </tr>
+		 </thead>
+		 <tbody *ngFor="let row of orderItems">
+			<tr height="100| %">
+			  <th>{{row.u_name}}</th>
+			  <th>{{row.phone}}</th>
+			  <th>{{row.order_id}}</th>
+			  <th>{{row.item_name}}</th>
+			  <th>{{row.count_inv}}</th>
+			  <th>{{row.rent_date|date}}</th>
+			  <th>{{row.return_date|date}}</th>
+			  <th>{{row.rental_price}}</th>
+			  <th>{{row.advance_amount}}</th>
+			  <th><img [src]="row.image" class="img-thumbnail" alt="Inventory Item" width="70"></th>
+			  <th><button type="button" class="btn btn-primary">Return</button></th>
+			</tr>
+		 </tbody>
+		</table>
+	</body>
+
+</html>
