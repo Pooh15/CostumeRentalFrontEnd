@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {MessageService} from '../../../services/message.service';
 import {OrderService} from '../../../services/order.service';
 
+type itemCounts = { rentPrice: number, depositPrice: number};
 @Component({
 	selector: 'app-cart-details',
 	templateUrl: './cart-details.component.html',
@@ -13,7 +14,12 @@ export class CartDetailsComponent implements OnInit {
 	count: number = 0;
 	wishlistArr: any[] = [];
 	cntToBeTaken: number = 1;
-	
+	totalRent: number = 0;
+	totalDeposit: number = 0;
+
+	myarray: itemCounts[] = [];
+	priceListMap : Map<number, itemCounts[]> = new Map<number, itemCounts[]>();
+
 	constructor(private messageService: MessageService, private orderService: OrderService) { }
 
 	ngOnInit(): void {
@@ -22,10 +28,20 @@ export class CartDetailsComponent implements OnInit {
 		});
 		this.messageService.cartItemArr.subscribe(itemArr =>{
 			console.log(itemArr);
-			
+
 			this.orderService.getWishList(itemArr).subscribe(
 				resData => {
 					this.wishlistArr = resData;
+					resData.forEach((element, index) => { 
+						this.priceListMap.delete(element.item_id);
+						if(!this.priceListMap.has(element.item_id)){
+							this.myarray.push({rentPrice : element.rental_price , depositPrice :element.advance_amount});
+							this.priceListMap.set(element.item_id, this.myarray); 
+						}
+						this.myarray = [];  
+					} )
+					
+					this.updateMap();
 				},
 				errorMessage => {
 					console.log(errorMessage);
@@ -33,16 +49,32 @@ export class CartDetailsComponent implements OnInit {
 				);
 		})
 	}
+	
+	updateMap(){
+		this.totalRent = 0;
+		this.totalDeposit = 0;
+		for (let [key, value] of this.priceListMap) {
+			console.log(key, value);
+			this.totalRent += value[0].rentPrice;
+			this.totalDeposit += value[0].depositPrice;
+		}
+	}
 
 	calculatePricePerItem(inputVal: number,index:number){
-		let total = inputVal*this.wishlistArr[index].rental_price;
+		let totalRe = inputVal*this.wishlistArr[index].rental_price;
 		(document.getElementById('rent'+index) as HTMLInputElement).innerHTML = 
-		`Total Rent: $${total}`;
+		`Total Rent: $${totalRe}`;
 
-		total = inputVal*this.wishlistArr[index].advance_amount;
+		let totalDepo = inputVal*this.wishlistArr[index].advance_amount;
 		(document.getElementById('deposit'+index) as HTMLInputElement).innerHTML = 
-		`Total Deposit: $${total}`;
+		`Total Deposit: $${totalDepo}`;
 
+		if(this.priceListMap.has(this.wishlistArr[index].item_id)){
+			this.myarray.push({rentPrice : totalRe , depositPrice :totalDepo});
+			this.priceListMap.set(this.wishlistArr[index].item_id, this.myarray); 
+		}
+		this.myarray = [];  
+		this.updateMap();
 	}
 
 	addCount(index: number, countInStore: number){
@@ -51,11 +83,11 @@ export class CartDetailsComponent implements OnInit {
 		if(inputVal  < countInStore){
 			inputVal++;
 		}
-		
+
 		this.calculatePricePerItem(inputVal, index);
 		(document.getElementById('cnt'+index) as HTMLInputElement).value = inputVal+'';
 	}
-	
+
 	decreaseCount(index: number, countInStore:number){
 		let inputElement = document.getElementById('cnt'+index) as HTMLInputElement;
 		let inputVal = parseInt(inputElement.value);
@@ -63,7 +95,7 @@ export class CartDetailsComponent implements OnInit {
 			inputVal--;
 		}
 		this.calculatePricePerItem(inputVal, index);
-		
+
 		(document.getElementById('cnt'+index) as HTMLInputElement).value = inputVal+'';
 	}	
 
