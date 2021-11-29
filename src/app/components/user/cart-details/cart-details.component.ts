@@ -10,7 +10,8 @@ type itemCounts = { rentPrice: number, depositPrice: number};
 })
 export class CartDetailsComponent implements OnInit {
 	@Input('showCart') showCart: boolean = false;
-	@Output() closeCartchild = new EventEmitter<{closeCartOverlay: boolean}>();
+	@Output() closeCartchild = new EventEmitter<{closeCartOverlay: boolean, 
+		orderPlaceSuccess: boolean}>();
 	count: number = 0;
 	wishlistArr: any[] = [];
 	cntToBeTaken: number = 1;
@@ -113,7 +114,7 @@ export class CartDetailsComponent implements OnInit {
 		this.orderService.checkout(this.items).subscribe(
 			resData => {
 				console.log(resData);
-				this.closeCart();
+				this.closeCart(1);
 			},
 			errorMessage => {
 				console.log(errorMessage);
@@ -122,9 +123,10 @@ export class CartDetailsComponent implements OnInit {
 		this.items = [];
 	}
 
-	closeCart(){
+	closeCart(num: number){
 		this.closeCartchild.emit({
-			closeCartOverlay: false
+			closeCartOverlay: false,
+			orderPlaceSuccess: num == 0? false: true
 		});
 	}
 }

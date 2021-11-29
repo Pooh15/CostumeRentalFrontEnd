@@ -1,6 +1,6 @@
 <div *ngIf="showCart" class="cart-detail">
 	<div class="d-flex justify-content-end">
-    <button (click)="closeCart()" class="btn btn-light"><i class="bi bi-x-lg"></i></button>
+    <button (click)="closeCart(0)" class="btn btn-light"><i class="bi bi-x-lg"></i></button>
   </div>
   <div class="row mt-2" *ngFor="let item of wishlistArr; let i = index">
   <div class="col-3">
