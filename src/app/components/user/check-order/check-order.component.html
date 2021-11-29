@@ -23,7 +23,9 @@
 						<span *ngIf="item.return_date != null ; else toBeReturned">Item Returned on: {{item.return_date | date}}</span>
 						<ng-template #toBeReturned>
 							<span class="returnBy">
-								Item needs to return
+								<p class="mb-0 mt-2">Return <u style="color: green;">{{item.order_count}} 
+									item{{item.order_count > 1? 's':''}}</u> by</p>
+								<p>{{item.return_by | date}}</p> 
 							</span>
 						</ng-template>
 					</p>
