@@ -107,20 +107,28 @@ export class CartDetailsComponent implements OnInit {
 			"item_id": element.item_id,
 			"count": element.order_cnt
 		}
-			this.items.push(item);
+		if (element.order_cnt != 0 )	
+		{
+		this.items.push(item);
+		}
 		})
 		console.log(this.items)
 
-		this.orderService.checkout(this.items).subscribe(
-			resData => {
-				console.log(resData);
-				this.closeCart(1);
-			},
-			errorMessage => {
-				console.log(errorMessage);
-			}
-		);
+		if(this.items.length!=0)
+		{
+			this.orderService.checkout(this.items).subscribe(
+				resData => {
+					console.log(resData);
+					this.closeCart(1);
+				},
+				errorMessage => {
+					console.log(errorMessage);
+				}
+			);
+		}
+	
 		this.items = [];
+		
 	}
 
 	closeCart(num: number){
