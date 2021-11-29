@@ -9,7 +9,7 @@ import {CheckOrderComponent} from './components/user/check-order/check-order.com
 import {InventoryComponent} from './components/user/inventory/inventory.component';
 import  {CustomerPurchaseComponent} from './components/admin/customer-purchase/customer-purchase.component';
 import  {AdminActionsComponent} from './components/admin/admin-actions/admin-actions.component';
-
+import { ReportComponent } from './components/admin/report/report.component';
 
 const routes: Routes = [
 { path: '', component: HomeComponent },
@@ -27,7 +27,8 @@ const routes: Routes = [
 children:[
 	{ path: '', redirectTo: 'customer-orders', pathMatch: 'full'},
 	{ path: 'customer-orders', component: CustomerPurchaseComponent },
-	{path: 'add-inventory', component: AddInventoryComponent}
+	{path: 'add-inventory', component: AddInventoryComponent},
+	{path: 'report', component: ReportComponent}
 ]}
 
 ];

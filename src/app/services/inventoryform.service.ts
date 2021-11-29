@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 interface ResponseData {
 	Success: [
-	"Successfully Added."
+		"Successfully Added."
 	]
 }
 
@@ -17,63 +17,84 @@ export class InventoryformService {
 	private appUrl = 'http://localhost:5000';  // URL to web api
 	constructor(private http: HttpClient) { }
 
-	createInventory(inventoryObj: any){
+	createInventory(inventoryObj: any) {
 		return this.http
-		.post<ResponseData>(
-			`${this.appUrl}/inventory/addItem`,
-			inventoryObj
+			.post<ResponseData>(
+				`${this.appUrl}/inventory/addItem`,
+				inventoryObj
 			)
-		.pipe(
-			catchError(errorRes => {
-				let errorMessage = 'An unknown error occurred!';
-				
-				if (!errorRes.error) {
-					return throwError(errorMessage);
-				}else {
-					return throwError(errorRes.error.message);
-				}
-			})
+			.pipe(
+				catchError(errorRes => {
+					let errorMessage = 'An unknown error occurred!';
+
+					if (!errorRes.error) {
+						return throwError(errorMessage);
+					} else {
+						return throwError(errorRes.error.message);
+					}
+				})
 			);
 	}
 
-	createCategory(category: {"categoryName": string}){
+	createCategory(category: { "categoryName": string }) {
 		return this.http
-		.post<ResponseData>(
-			`${this.appUrl}/category/create`,category)
-		.pipe(map( response => {  
-			console.log(response);
-			return response; 
-		}), 
-		catchError(errorRes => {
-			let errorMessage = 'An unknown error occurred!';
+			.post<ResponseData>(
+				`${this.appUrl}/category/create`, category)
+			.pipe(map(response => {
+				console.log(response);
+				return response;
+			}),
+				catchError(errorRes => {
+					let errorMessage = 'An unknown error occurred!';
 
-			if (!errorRes.error) {
-				return throwError(errorMessage);
-			}else {
-				return throwError(errorRes.error.message);
-			}
-		})
-		);
+					if (!errorRes.error) {
+						return throwError(errorMessage);
+					} else {
+						return throwError(errorRes.error.message);
+					}
+				})
+			);
 	}
 
-	addPattern(patternName :string, categoryId: number){
+	addPattern(patternName: string, categoryId: number) {
 		return this.http
-		.post<ResponseData>(
-			`${this.appUrl}/category/createPattern`,
-			{"patternName": patternName, "categoryId": categoryId})
-		.pipe(map( response => {  
-			console.log(response);
-			return response; 
-		}), 
-		catchError(errorRes => {
-			let errorMessage = 'An unknown error occurred!';
+			.post<ResponseData>(
+				`${this.appUrl}/category/createPattern`,
+				{ "patternName": patternName, "categoryId": categoryId })
+			.pipe(map(response => {
+				console.log(response);
+				return response;
+			}),
+				catchError(errorRes => {
+					let errorMessage = 'An unknown error occurred!';
 
-			if (!errorRes.error) {
-				return throwError(errorMessage);
-			}else {
-				return throwError(errorRes.error.message);
-			}
-		})
-		);
+					if (!errorRes.error) {
+						return throwError(errorMessage);
+					} else {
+						return throwError(errorRes.error.message);
+					}
+				})
+			);
+	}
+
+	returnOrder(order_id: number, item_id: number, actual_return_count: number) {
+
+		return this.http
+			.post<ResponseData>(
+				`${this.appUrl}/inventory/postReturnOrder`,
+				{ "order_id": order_id, "item_id": item_id, "actual_return_count": actual_return_count })
+			.pipe(map((response) => {				
+				return response;
+			}),
+				catchError(errorRes => {
+					let errorMessage = 'An unknown error occurred!';					
+
+					if (!errorRes.error) {
+						return throwError(errorMessage);
+					} else {
+						return throwError(errorRes.error.message);
+					}
+				})
+			);
 	}
 }

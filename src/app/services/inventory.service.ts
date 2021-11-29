@@ -136,14 +136,14 @@ export class InventoryService {
 			);//end pipe
 	}
 
-	getOrderDetails(): Observable<any[]> {
+	getAdminOrderDetails(): Observable<any[]> {
 
-		return this.http.get<any[]>(`${this.appUrl}/inventory/getOrderDetails`)
+		return this.http.get<any[]>(`${this.appUrl}/inventory/getAdminOrderDetails`)
 			.pipe(
 				map(response => {
 
 					return response;
-				}), catchError(this.handleError('getOrderDetails', []))
+				}), catchError(this.handleError('getAdminOrderDetails', []))
 			);//end pipe
 	}
 }

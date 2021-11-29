@@ -31,6 +31,7 @@ import { CheckOrderComponent } from './components/user/check-order/check-order.c
 import { CustomerPurchaseComponent } from './components/admin/customer-purchase/customer-purchase.component';
 import { AdminActionsComponent } from './components/admin/admin-actions/admin-actions.component';
 import { CartDetailsComponent } from './components/user/cart-details/cart-details.component';
+import { ReportComponent } from './components/admin/report/report.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { CartDetailsComponent } from './components/user/cart-details/cart-detail
   CheckOrderComponent,
   CustomerPurchaseComponent,
   AdminActionsComponent,
-  CartDetailsComponent
+  CartDetailsComponent,
+  ReportComponent
   ],
   imports: [
   BrowserModule,
