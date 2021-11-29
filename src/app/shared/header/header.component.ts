@@ -10,9 +10,10 @@ import {MessageService} from '../../services/message.service';
 })
 export class HeaderComponent implements OnInit {
 	loginFlag: boolean = false;
-	userName:string = "";
+	userName:any;
 	count: number = 0;
 	openCartFlag: boolean = false;
+	role: any;
 
 	constructor(private router:Router, private messageService: MessageService) { 
 
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit {
 	updateUserName(user: {userName: string}){
 		this.userName = user.userName;
 		this.loginFlag = false;
+		this.role = sessionStorage.getItem('role_name');
 	}
 
 	//Update User Profile
@@ -34,7 +36,9 @@ export class HeaderComponent implements OnInit {
 
 	signOut(){
 		sessionStorage.clear();
-		this.userName = '';
+		this.userName = null;
+		this.role = null;
+		this.ngOnInit();
 		this.router.navigate(['home']);
 	}
 	
@@ -47,8 +51,19 @@ export class HeaderComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		
+		if(sessionStorage.getItem('user_id') != null 
+			|| sessionStorage.getItem('user_id') != undefined){
+			this.userName = sessionStorage.getItem('u_name');
+
+		if(sessionStorage.getItem('role_name') != null 
+			|| sessionStorage.getItem('role_name') != undefined){
+			this.role = sessionStorage.getItem('role_name');
+
 		this.messageService.count.subscribe(c => {
 			this.count = c;
 		});
 	}
+}
+}
 }

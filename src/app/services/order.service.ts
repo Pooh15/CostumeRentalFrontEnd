@@ -22,6 +22,7 @@ export class OrderService {
 		return this.http.get<any[]>(`${this.appUrl}/user/orderDetails/${userId}`)
 		.pipe(
 			map( response => {
+				console.log(response[0])
 				return response[0];
 			}),catchError(this.handleError('getOrders', []))
 			);//end pipe

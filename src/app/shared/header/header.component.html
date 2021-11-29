@@ -15,10 +15,11 @@
 
 <div class="collapse navbar-collapse" id="navbarNavDropdown">
   <div class="header-menu navbar-nav">
-    <form class="header-menu nav-item">
+    <form class="header-menu nav-item" *ngIf="role == 'User'">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     </form>
-  <div class="mt-2 me-4 position-relative" (click)="openCartFlag = !openCartFlag">
+  <div class="mt-2 me-4 position-relative" (click)="openCartFlag = !openCartFlag"
+  *ngIf="role == 'User'">
      <i class="bi bi-cart3 my-5"></i>
     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light border border-danger" style="color:black">
     {{count}}
@@ -26,11 +27,11 @@
   </span>
    </div>
     <span class="header-menu nav-item login-header" (click)="loginFlag = !loginFlag"
-    *ngIf="userName == ''">
+    *ngIf="userName == null">
      <span class="bi bi-person-square"><span class="ml-2">Login</span></span>
      <span style="font-size:11px">or Create Account</span>
    </span>
-   <div class="nav-item" *ngIf="userName != ''">
+   <div class="nav-item" *ngIf="userName != null">
     <div class="btn-group">
       <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         {{userName}}
