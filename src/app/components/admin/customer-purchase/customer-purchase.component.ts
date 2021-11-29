@@ -22,6 +22,14 @@ export class CustomerPurchaseComponent implements OnInit {
 
   orderItems: any[] = [];
 
+  btnVal = "Return";
+  //button click function
+  changeText()
+        {
+          this.btnVal = "Returned!!"
+        }
+  
+
   constructor(private inventoryService: InventoryService,private inventoryformService: InventoryformService) { }
 
   returnOrder(order_id:number,item_id:number){
@@ -35,6 +43,7 @@ export class CustomerPurchaseComponent implements OnInit {
     });
 
   }
+  
 
   ngOnInit(): void {
     this.inventoryService.getAdminOrderDetails().subscribe(data => {
