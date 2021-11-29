@@ -22,22 +22,15 @@ export class CustomerPurchaseComponent implements OnInit {
 
   orderItems: any[] = [];
 
-  btnVal = "Return";
-  //button click function
-  changeText()
-        {
-          this.btnVal = "Returned!!"
-        }
-  
 
   constructor(private inventoryService: InventoryService,private inventoryformService: InventoryformService) { }
 
   returnOrder(order_id:number,item_id:number){
     this.inventoryformService.returnOrder(order_id,item_id,this.actual_return_count)
     .subscribe(data => {
-      this.successMsg = 'Item added to Laundry!';
+        this.successMsg = 'Item added to Laundry!';
      },
-    errorMessage => {
+         errorMessage => {
       this.errorMessage = errorMessage;
       setTimeout(() => {this.errorMessage = ''}, 5000);
     });

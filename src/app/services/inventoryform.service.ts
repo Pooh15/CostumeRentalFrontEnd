@@ -83,7 +83,7 @@ export class InventoryformService {
 			.post<ResponseData>(
 				`${this.appUrl}/inventory/postReturnOrder`,
 				{ "order_id": order_id, "item_id": item_id, "actual_return_count": actual_return_count })
-			.pipe(map((response) => {				
+			.pipe(map((response) => {	
 				return response;
 			}),
 				catchError(errorRes => {
@@ -97,4 +97,28 @@ export class InventoryformService {
 				})
 			);
 	}
+
+	keywordSearch(key:string) {
+		console.log(key);
+
+		return this.http
+			.post<ResponseData>(
+				`${this.appUrl}/inventory/searchKeyword`,
+				{ "key": key })
+			.pipe(map((response) => {				
+				console.log(response);
+				return response;
+			}),
+				catchError(errorRes => {
+					let errorMessage = 'An unknown error occurred!';					
+
+					if (!errorRes.error) {
+						return throwError(errorMessage);
+					} else {
+						return throwError(errorRes.error.message);
+					}
+				})
+			);
+	}
+
 }
