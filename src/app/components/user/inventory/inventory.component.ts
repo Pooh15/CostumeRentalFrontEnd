@@ -9,6 +9,8 @@ import {MessageService} from '../../../services/message.service';
 })
 export class InventoryComponent implements OnInit {
 	
+	keyword: string='';
+
 	categoryArr: {"c_id": number, "c_name": string}[] = [];
 	checkedCategory: number[] = [];
 
@@ -198,6 +200,12 @@ export class InventoryComponent implements OnInit {
 			); 
 	}
 
+
+	keywordSearch(){
+		console.log(this.keyword);
+		
+
+	}
 	ngOnInit(): void {
 		this.getInventory();
 		this.getCategory();

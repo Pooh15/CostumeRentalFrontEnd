@@ -41,10 +41,15 @@ export class OrderService {
 		const url = `${this.appUrl}/user/placeOrder`;
 		let user_id = sessionStorage.getItem('user_id');
 
-		let checkOutObj = {
-			"user_id": user_id,
-			"items": itemCntObj
-		}
+		//let user_id = JSON.parse(sessionStorage.getItem('user_id') || '{}');
+		//if(user_id != {}){
+	let checkOutObj = {
+		"user_id": user_id == null? '': parseInt(user_id),
+		"items": itemCntObj
+	}
+	//}
+
+		console.log(checkOutObj)
         return this.http.post<any>(url, checkOutObj)
         .pipe(map( response => {  
         	console.log(response)
@@ -59,3 +64,4 @@ export class OrderService {
         }) );
 	}
 }
+
