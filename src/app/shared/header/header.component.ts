@@ -38,9 +38,13 @@ export class HeaderComponent implements OnInit {
 		this.router.navigate(['home']);
 	}
 	
-	closeCart(closeCart: {closeCartOverlay: boolean}){
-    	this.openCartFlag = closeCart.closeCartOverlay;
-  	}
+	closeCart(closeCart: {closeCartOverlay: boolean, orderPlaceSuccess: boolean}){
+		this.openCartFlag = closeCart.closeCartOverlay;
+		console.log('inside header')
+		if(closeCart.orderPlaceSuccess == true){
+			console.log(closeCart.orderPlaceSuccess)
+		}
+	}
 
 	ngOnInit(): void {
 		this.messageService.count.subscribe(c => {

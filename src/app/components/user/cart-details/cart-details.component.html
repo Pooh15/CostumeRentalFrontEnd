@@ -1,6 +1,6 @@
 <div *ngIf="showCart" class="cart-detail">
 	<div class="d-flex justify-content-end">
-    <button (click)="closeCart()" class="btn btn-light"><i class="bi bi-x-lg"></i></button>
+    <button (click)="closeCart(0)" class="btn btn-light"><i class="bi bi-x-lg"></i></button>
   </div>
   <div class="row mt-2" *ngFor="let item of wishlistArr; let i = index">
   <div class="col-3">
@@ -38,7 +38,8 @@
 <div class="final-price row mt-3">
   <span class="col"><div class="tot-rent"><span class="fw-bolder">Total Rent to pay: </span> {{totalRent | currency}}</div>
   <div class="tot-rent"><span class="fw-bolder">Total Deposit to pay: </span> {{totalDeposit | currency}}</div></span>
-  <span class="col d-flex justify-content-end"><button class="btn btn-light">Check Out</button></span>
+  <span class="col d-flex justify-content-end"><button class="btn btn-light"
+    (click)="checkOut()">Check Out</button></span>
 </div>
 </div>
 

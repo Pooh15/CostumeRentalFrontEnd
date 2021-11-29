@@ -27,13 +27,19 @@ export class InventoryComponent implements OnInit {
 	inventory: any[] = [];
 	openCartFlag: boolean = false;
 
+	successAlert: boolean = false;
 	constructor(private inventoryService:InventoryService,
 
 		private messageService: MessageService) { 
 	}
 	
-	closeCart(closeCart: {closeCartOverlay: boolean}){
+	closeCart(closeCart: {closeCartOverlay: boolean, orderPlaceSuccess: boolean}){
     this.openCartFlag = closeCart.closeCartOverlay;
+    console.log(closeCart.orderPlaceSuccess)
+    if(closeCart.orderPlaceSuccess == true){
+    	this.successAlert = true;
+    	setTimeout(() => {this.successAlert = false}, 5000);
+    }
   }
 
 	addCart(itemId: number, element: any){
