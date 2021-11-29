@@ -9,6 +9,8 @@
 			<th scope="col">Order ID</th>
 			<th scope="col">Item Name</th>
 			<th scope="col">Item Count</th>
+			<th scope="col">Actual Return Count</th>
+			<th scope="col">Return Count</th>
 			<th scope="col">Rent Date</th>
 			<th scope="col">Return Date</th>
 			<th scope="col">Rental Price</th>
@@ -23,13 +25,19 @@
 			  <th>{{row.phone}}</th>
 			  <th>{{row.order_id}}</th>
 			  <th>{{row.item_name}}</th>
-			  <th>{{row.count_inv}}</th>
+			  <th>{{row.order_count}}</th>
+			  <th>{{row.return_count}}</th>
+			  <input type="text" class="form-control" id="return_count" name="return_count" 
+			  [disabled]="row.return_date != null" [(ngModel)]="actual_return_count" autocomplete="off" style=width:40px>
+				
 			  <th>{{row.rent_date|date}}</th>
 			  <th>{{row.return_date|date}}</th>
 			  <th>{{row.rental_price}}</th>
 			  <th>{{row.advance_amount}}</th>
 			  <th><img [src]="row.image" class="img-thumbnail" alt="Inventory Item" width="70"></th>
-			  <th><button type="button" class="btn btn-primary">Return</button></th>
+			  <th><button type="submit" class="btn btn-primary"
+				 [ngClass]="{'disabled': row.return_date != null}"
+				  (click)="returnOrder(row.order_id,row.item_id)">Return</button></th>
 			</tr>
 		 </tbody>
 		</table>
