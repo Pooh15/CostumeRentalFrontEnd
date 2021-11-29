@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InventoryService } from 'src/app/services/inventory.service';
-import {MessageService} from '../../../services/message.service'; 
+import {MessageService} from '../../../services/message.service';
+import { InventoryformService } from 'src/app/services/inventoryform.service'; 
 
 @Component({
 	selector: 'app-inventory',
@@ -30,8 +31,11 @@ export class InventoryComponent implements OnInit {
 	openCartFlag: boolean = false;
 
 	successAlert: boolean = false;
-	constructor(private inventoryService:InventoryService,
 
+	successMsg: string = '';
+	errorMessage: string = '';
+
+	constructor(private inventoryService:InventoryService,private inventoryformService: InventoryformService,
 		private messageService: MessageService) { 
 	}
 	
@@ -203,7 +207,16 @@ export class InventoryComponent implements OnInit {
 
 	keywordSearch(){
 		console.log(this.keyword);
-		
+		    this.inventoryformService.keywordSearch(this.keyword)
+            .subscribe(data => {
+				
+              this.successMsg = 'Search result completed!';
+             },
+            errorMessage => {
+              this.errorMessage = errorMessage;
+              setTimeout(() => {this.errorMessage = ''}, 5000);
+            });
+
 
 	}
 	ngOnInit(): void {
