@@ -16,7 +16,7 @@ export class CartDetailsComponent implements OnInit {
 	cntToBeTaken: number = 1;
 	totalRent: number = 0;
 	totalDeposit: number = 0;
-
+	items: {"item_id": number, "count": number}[] = [];
 	myarray: itemCounts[] = [];
 	priceListMap : Map<number, itemCounts[]> = new Map<number, itemCounts[]>();
 
@@ -32,7 +32,8 @@ export class CartDetailsComponent implements OnInit {
 			this.orderService.getWishList(itemArr).subscribe(
 				resData => {
 					this.wishlistArr = resData;
-					resData.forEach((element, index) => { 
+					resData.forEach((element, index) => {
+						this.wishlistArr[index].order_cnt = 1; 
 						this.priceListMap.delete(element.item_id);
 						if(!this.priceListMap.has(element.item_id)){
 							this.myarray.push({rentPrice : element.rental_price , depositPrice :element.advance_amount});
@@ -68,7 +69,7 @@ export class CartDetailsComponent implements OnInit {
 		let totalDepo = inputVal*this.wishlistArr[index].advance_amount;
 		(document.getElementById('deposit'+index) as HTMLInputElement).innerHTML = 
 		`Total Deposit: $${totalDepo}`;
-
+		this.wishlistArr[index].order_cnt = inputVal;
 		if(this.priceListMap.has(this.wishlistArr[index].item_id)){
 			this.myarray.push({rentPrice : totalRe , depositPrice :totalDepo});
 			this.priceListMap.set(this.wishlistArr[index].item_id, this.myarray); 
@@ -98,6 +99,28 @@ export class CartDetailsComponent implements OnInit {
 
 		(document.getElementById('cnt'+index) as HTMLInputElement).value = inputVal+'';
 	}	
+	
+	checkOut(){
+		this.wishlistArr.forEach((element, index) => {
+		let item = {
+			"item_id": element.item_id,
+			"count": element.order_cnt
+		}
+			this.items.push(item);
+		})
+		console.log(this.items)
+
+		this.orderService.checkout(this.items).subscribe(
+			resData => {
+				console.log(resData);
+				this.closeCart();
+			},
+			errorMessage => {
+				console.log(errorMessage);
+			}
+		);
+		this.items = [];
+	}
 
 	closeCart(){
 		this.closeCartchild.emit({

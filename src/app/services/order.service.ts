@@ -35,4 +35,27 @@ export class OrderService {
 			}),catchError(this.handleError('getWishList', []))
 			);//end pipe
 	} 
+
+	
+	checkout(itemCntObj:{"item_id": number, "count": number}[]) {
+		const url = `${this.appUrl}/user/placeOrder`;
+		let user_id = sessionStorage.getItem('user_id');
+
+		let checkOutObj = {
+			"user_id": user_id,
+			"items": itemCntObj
+		}
+        return this.http.post<any>(url, checkOutObj)
+        .pipe(map( response => {  
+        	console.log(response)
+            return response; 
+        }), catchError(errorRes => {
+            let errorMessage = 'An unknown error occurred!';
+            if (!errorRes.error) {
+            	return throwError(errorMessage);
+            }else {
+            	return throwError(errorRes.error);
+            }
+        }) );
+	}
 }
