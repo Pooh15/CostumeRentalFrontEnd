@@ -19,7 +19,8 @@ export class CustomerPurchaseComponent implements OnInit {
   actual_return_count: number=0;
   successMsg: string = '';
   errorMessage: string='';
-
+  successMsg1: string = '';
+  errorMessage1: string='';
   orderItems: any[] = [];
 
 
@@ -65,6 +66,21 @@ export class CustomerPurchaseComponent implements OnInit {
     errorMessage => { 
       this.errorMessage = errorMessage;
       setTimeout(() => {this.errorMessage = ''}, 5000);
+    });
+
+  }
+
+  removeLaundry(item_id:number, order_id:number){
+
+    this.inventoryformService.removeLaundry(item_id,order_id)
+    .subscribe(data => {
+      this.successMsg1 = 'Laundry Done!';
+      setTimeout(() => {this.successMsg1 = ''}, 5000);
+      this.ngOnInit();
+    },
+    errorMessage1 => { 
+      this.errorMessage1 = errorMessage1;
+      setTimeout(() => {this.errorMessage1 = ''}, 5000);
     });
 
   }
