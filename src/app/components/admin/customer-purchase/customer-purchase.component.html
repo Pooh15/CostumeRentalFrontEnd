@@ -1,12 +1,14 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en">
 <body>
 	<script type="text/javascript">
 		function showMessage() {
 			alert("Item is added to Laundry!");
 		}
-	</script>
+	</script> 
+
 	<table class="table">
+		
 		<thead>
 		  <tr>
 			<th scope="col">User Name</th>
@@ -50,4 +52,55 @@
 		</table>
 	</body>
 
-</html>
+</html> -->
+
+<div class="row" *ngIf="successMsg != ''">
+	<div class="col-8"></div>  
+  <div class="alert alert-info col-4" role="alert">
+	Item Return Success
+  </div>
+  </div>
+  
+  <table class="table table-stripetd table-success mt-4">
+  <thead>
+	<tr>
+	  <th scope="col">User Name</th>
+	  <th scope="col">Contact Number</th>
+	  <th scope="col">Order ID</th>
+	  <th scope="col">Item Name</th>
+	  <th scope="col">Ordered Count</th>
+	  <!-- <th scope="col">Actual Return Count</th> -->
+	  <th scope="col">Return Count</th>
+	  <th scope="col">Rent Date</th>
+	  <th scope="col">Return Date</th>
+	  <th scope="col">Rental Price</th>
+	  <th scope="col">Advance Price</th>			
+	  <th scope="col">Image</th>
+	  <th scope="col">Return Item</th>
+   </tr>
+   </thead>
+   <tbody *ngFor="let row of orderItems; let i = index">
+	  <tr height="100| %">
+		<td>{{row.u_name}}</td>
+		<td>{{row.phone}}</td>
+		<td>{{row.order_id}}</td>
+		<td>{{row.item_name}}</td>
+		<td>{{row.order_count}}</td>
+		<!-- <td>{{row.return_count}}</td> -->
+		<td><input type="number" class="form-control" id="{{'return_count'+i}}" name="return_count" 
+		*ngIf="row.return_date == null; else returnedCnt" 
+		 autocomplete="off" style="width: 4rem;"
+		 (keyup)="onKey(i, row.order_count)" (blur)="onKey(i, row.order_count)">
+		 <ng-template #returnedCnt>{{row.return_count}}</ng-template>
+		</td>
+		<td>{{row.rent_date|date}}</td>
+		<td>{{row.return_date|date}}</td>
+		<td>{{row.rental_price}}</td>
+		<td>{{row.advance_amount}}</td>
+		<td><img [src]="row.image" class="img-thumbnail" alt="Inventory Item" width="70"></td>
+		<td><button type="submit" id="btnShowMsg" value="Return" class="btn btn-primary"
+		   [ngClass]="{'disabled': row.return_date != null }" 
+			(click)="returnOrder(row.order_id,row.item_id, i)">Return</button></td>
+	  </tr>
+   </tbody>
+  </table>

@@ -1,3 +1,18 @@
 table {
     width: 100%;
   }
+
+  .alert{
+  margin-bottom: -4%;
+  z-index: 1;
+  margin-top: -3%;
+  display: flex;
+  align-items: center;
+  font-size: x-large;
+  font-weight: 700;
+}
+.alert-info{
+  color: black;
+  background-color: #64f094;
+  border-color: #b6effb;
+}
