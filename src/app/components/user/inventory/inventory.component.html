@@ -14,6 +14,8 @@
                 <div *ngFor="let item of categoryArr; let i = index;">
                     <input type="checkbox" id="{{item.c_id}}" [value]="item.c_id" (change)="getItem($event, i)">
                     <label for="{{item.c_id}}" class="ms-3"> {{item.c_name}}</label> 
+                    <!-- <div *ngIf="item.Laundry_count" [ngClass]="{'laundry-status': item.Laundry_count != null}"> In Laundry
+                        <div>Available on {{item.expected_laundry_out_date}}</div></div> -->
 
                 </div>
             </div>
