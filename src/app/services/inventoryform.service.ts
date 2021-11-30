@@ -98,6 +98,27 @@ export class InventoryformService {
 			);
 	}
 
+	removeLaundry(item_id: number,order_id: number)
+	{
+		return this.http
+		.post<ResponseData>(
+			`${this.appUrl}/inventory/postRemoveLaundry`,
+			{ "item_id": item_id,"order_id": order_id })
+		.pipe(map((response) => {	
+			return response;
+		}),
+			catchError(errorRes => {
+				let errorMessage = 'An unknown error occurred!';					
+
+				if (!errorRes.error) {
+					return throwError(errorMessage);
+				} else {
+					return throwError(errorRes.error.message);
+				}
+			})
+		);
+	}
+
 	keywordSearch(key:string) {
 		console.log(key);
 
