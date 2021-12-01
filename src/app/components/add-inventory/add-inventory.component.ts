@@ -84,7 +84,7 @@ getRentAndDeposit(){
 		this.deposite_cost = this.originalCost * 0.8;
 	} else {
 		this.rental_cost = this.originalCost * 0.25;
-		this.deposite_cost = this.originalCost * 0.15;
+		this.deposite_cost = this.originalCost * 0.8;
 	}
 }
 

@@ -75,6 +75,10 @@ export class InventoryComponent implements OnInit {
 				console.log(errorMessage);
 			}
 			);
+			if(this.checkedCategory.length==0)
+			{
+				this.getInventory();
+			}
 	}
 
 	getPattern(event: any){
@@ -113,6 +117,10 @@ export class InventoryComponent implements OnInit {
 				console.log(errorMessage);
 			}
 			);
+			if(this.checkedColor.length==0)
+			{
+				this.getInventory();
+			}
 	}
 
 	getSize(event: any){
@@ -132,6 +140,11 @@ export class InventoryComponent implements OnInit {
 				console.log(errorMessage);
 			}
 			);
+
+			if(this.checkedSize.length==0)
+			{
+				this.getInventory();
+			}
 	}
 
 	getCloth(event: any){

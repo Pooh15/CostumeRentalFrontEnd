@@ -80,8 +80,7 @@
 	  <th scope="col">Return Count</th>
 	  <th scope="col">Rent Date</th>
 	  <th scope="col">Return Date</th>
-	  <th scope="col">Laundry out date</th>
-	  <th scope="col">Rental Price</th>
+	  	  <th scope="col">Rental Price</th>
 	  <th scope="col">Advance Price</th>			
 	  <th scope="col">Image</th>
 	  <th scope="col">Return Item</th>
@@ -103,17 +102,15 @@
 		</td>
 		<td>{{row.rent_date|date}}</td>
 		<td>{{row.return_date|date}}</td>
-		<td>{{row.laundry_out_date|date}}</td>
 		<td>{{row.rental_price}}</td>
 		<td>{{row.advance_amount}}</td>
 		<td><img [src]="row.image" class="img-thumbnail" alt="Inventory Item" width="70"></td>
 		<td><button type="submit" id="btnShowMsg" value="Return" class="btn btn-primary"
-		   [ngClass]="{'disabled': row.return_date != null }" 
-			(click)="returnOrder(row.order_id,row.item_id, i)">Return</button>
-		<tr> <button type="submit" id="btnShowMsg" value="Add to Inventory" class="btn btn-primary"
-			[ngClass]="{'disabled': row.laundry_out_date != null }"
-		 (click)="removeLaundry(row.item_id,row.order_id)">Laundry Done</button></tr>
-		</td>
+           [ngClass]="{'disabled': row.return_date != null }" 
+            (click)="returnOrder(row.order_id,row.item_id, i)">Return</button>
+        <tr> <button type="submit" id="{{'laundry'+i}}" value="Add to Inventory" class="btn btn-primary"
+            (click)="removeLaundry(row.item_id,row.order_id,i)">Laundry Done</button></tr>
+        </td>
 		 
 	  </tr>
    </tbody>
