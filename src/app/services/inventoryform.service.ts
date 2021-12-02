@@ -120,7 +120,7 @@ export class InventoryformService {
 	}
 
 	keywordSearch(key:string) {
-		console.log(key);
+		//console.log(key);
 
 		return this.http
 			.post<ResponseData>(

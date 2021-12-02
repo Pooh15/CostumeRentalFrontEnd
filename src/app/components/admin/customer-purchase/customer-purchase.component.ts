@@ -70,13 +70,15 @@ export class CustomerPurchaseComponent implements OnInit {
 
   }
 
-  removeLaundry(item_id:number, order_id:number){
+  removeLaundry(item_id:number, order_id:number,index:number){
 
     this.inventoryformService.removeLaundry(item_id,order_id)
     .subscribe(data => {
       this.successMsg1 = 'Laundry Done!';
       setTimeout(() => {this.successMsg1 = ''}, 5000);
-      this.ngOnInit();
+      
+      (document.getElementById('laundry'+index) as HTMLInputElement).style.display = 'none';
+      //this.ngOnInit();
     },
     errorMessage1 => { 
       this.errorMessage1 = errorMessage1;
